@@ -1,0 +1,127 @@
+{
+    "name": "@sigilnet/coherence",
+    "version": "0.1.0",
+    "private": false,
+    "description": "Canonical coherence math, regime analysis, and structural persistence primitives for Sigilnet.",
+    "packageManager": "pnpm@10.24.0",
+    "type": "module",
+    "main": "./dist/index.js",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js"
+        },
+        "./package.json": "./package.json",
+        "./browser": {
+            "types": "./dist/browser.d.ts",
+            "import": "./dist/browser.js"
+        },
+        "./contracts": {
+            "types": "./dist/contracts.d.ts",
+            "import": "./dist/contracts.js"
+        },
+        "./attractors": {
+            "types": "./dist/attractors/index.d.ts",
+            "import": "./dist/attractors/index.js"
+        },
+        "./attractors/index": {
+            "types": "./dist/attractors/index.d.ts",
+            "import": "./dist/attractors/index.js"
+        },
+        "./attractors/*": {
+            "types": "./dist/attractors/*.d.ts",
+            "import": "./dist/attractors/*.js"
+        },
+        "./fitj": {
+            "types": "./dist/fitj.d.ts",
+            "import": "./dist/fitj.js"
+        },
+        "./invariants": {
+            "types": "./dist/invariants.d.ts",
+            "import": "./dist/invariants.js"
+        },
+        "./invariants-lite": {
+            "types": "./dist/invariants-lite.d.ts",
+            "import": "./dist/invariants-lite.js"
+        },
+        "./ncf": {
+            "types": "./dist/ncf.d.ts",
+            "import": "./dist/ncf.js"
+        },
+        "./geometric-regime": {
+            "types": "./dist/geometric-regime.d.ts",
+            "import": "./dist/geometric-regime.js"
+        },
+        "./superformula": {
+            "types": "./dist/superformula.d.ts",
+            "import": "./dist/superformula.js"
+        },
+        "./types": {
+            "types": "./dist/types.d.ts",
+            "import": "./dist/types.js"
+        },
+        "./governance/*": {
+            "types": "./dist/governance/*.d.ts",
+            "import": "./dist/governance/*.js"
+        },
+        "./governance/drift": {
+            "types": "./dist/governance/drift.d.ts",
+            "import": "./dist/governance/drift.js"
+        },
+        "./governance/lorentz": {
+            "types": "./dist/governance/lorentz.d.ts",
+            "import": "./dist/governance/lorentz.js"
+        },
+        "./governance/linchpin": {
+            "types": "./dist/governance/linchpin.d.ts",
+            "import": "./dist/governance/linchpin.js"
+        },
+        "./regime/*": {
+            "types": "./dist/regime/*.d.ts",
+            "import": "./dist/regime/*.js"
+        },
+        "./regime/bayes-filter": {
+            "types": "./dist/regime/bayes-filter.d.ts",
+            "import": "./dist/regime/bayes-filter.js"
+        },
+        "./dynamics/*": {
+            "types": "./dist/dynamics/*.d.ts",
+            "import": "./dist/dynamics/*.js"
+        },
+        "./dynamics/dimension": {
+            "types": "./dist/dynamics/dimension.d.ts",
+            "import": "./dist/dynamics/dimension.js"
+        }
+    },
+    "files": [
+        "dist",
+        "package.json",
+        "README.md",
+        "CHANGELOG.md"
+    ],
+    "sideEffects": false,
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/gsknnft/sigilnet.git"
+    },
+    "license": "BSD-3-Clause",
+    "publishConfig": {
+        "access": "public"
+    },
+    "scripts": {
+        "build": "pnpm clean && tsc -p tsconfig.json",
+        "tsc:noemit": "tsc -b --noEmit",
+        "test": "vitest run --reporter tree",
+        "clean": "node -e \"require('node:fs').rmSync('dist',{recursive:true,force:true})\"",
+        "dev": "tsc -b --watch"
+    },
+    "devDependencies": {
+        "vitest": "4.0.18",
+        "@vitest/coverage-v8": "4.0.18",
+        "@types/node": "^24.10.1",
+        "ts-node": "^10.9.2",
+        "typescript": "^5.9.3"
+    }
+}

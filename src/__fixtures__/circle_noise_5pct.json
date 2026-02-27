@@ -1,0 +1,11 @@
+{
+    "scalars": {
+        "spectralNegentropy": 0.5,
+        "spectralEntropy": 0.8,
+        "geometricFitError": 0.1,
+        "anisotropy": 0.3,
+        "roughness": 0.2
+    },
+    "hash": "",
+    "coherenceDistance": 0.15
+}
