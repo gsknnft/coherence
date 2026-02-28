@@ -11,88 +11,109 @@
     "exports": {
         ".": {
             "types": "./dist/index.d.ts",
-            "import": "./dist/index.js"
+            "import": "./dist/index.js",
+            "default": "./dist/index.js"
         },
         "./package.json": "./package.json",
         "./browser": {
             "types": "./dist/browser.d.ts",
-            "import": "./dist/browser.js"
+            "import": "./dist/browser.js",
+            "default": "./dist/browser.js"
         },
         "./contracts": {
             "types": "./dist/contracts.d.ts",
-            "import": "./dist/contracts.js"
+            "import": "./dist/contracts.js",
+            "default": "./dist/contracts.js"
         },
         "./attractors": {
             "types": "./dist/attractors/index.d.ts",
-            "import": "./dist/attractors/index.js"
+            "import": "./dist/attractors/index.js",
+            "default": "./dist/attractors/index.js"
         },
         "./attractors/index": {
             "types": "./dist/attractors/index.d.ts",
-            "import": "./dist/attractors/index.js"
+            "import": "./dist/attractors/index.js",
+            "default": "./dist/attractors/index.js"
         },
         "./attractors/*": {
             "types": "./dist/attractors/*.d.ts",
-            "import": "./dist/attractors/*.js"
+            "import": "./dist/attractors/*.js",
+            "default": "./dist/attractors/*.js"
         },
         "./fitj": {
             "types": "./dist/fitj.d.ts",
-            "import": "./dist/fitj.js"
+            "import": "./dist/fitj.js",
+            "default": "./dist/fitj.js"
         },
         "./invariants": {
             "types": "./dist/invariants.d.ts",
-            "import": "./dist/invariants.js"
+            "import": "./dist/invariants.js",
+            "default": "./dist/invariants.js"
         },
         "./invariants-lite": {
             "types": "./dist/invariants-lite.d.ts",
-            "import": "./dist/invariants-lite.js"
+            "import": "./dist/invariants-lite.js",
+            "default": "./dist/invariants-lite.js"
         },
         "./ncf": {
             "types": "./dist/ncf.d.ts",
-            "import": "./dist/ncf.js"
+            "import": "./dist/ncf.js",
+            "default": "./dist/ncf.js"
         },
         "./geometric-regime": {
             "types": "./dist/geometric-regime.d.ts",
-            "import": "./dist/geometric-regime.js"
+            "import": "./dist/geometric-regime.js",
+            "default": "./dist/geometric-regime.js"
         },
         "./superformula": {
             "types": "./dist/superformula.d.ts",
-            "import": "./dist/superformula.js"
+            "import": "./dist/superformula.js",
+            "default": "./dist/superformula.js"
         },
         "./types": {
             "types": "./dist/types.d.ts",
-            "import": "./dist/types.js"
+            "import": "./dist/types.js",
+            "default": "./dist/types.js"
         },
         "./governance/*": {
             "types": "./dist/governance/*.d.ts",
-            "import": "./dist/governance/*.js"
+            "import": "./dist/governance/*.js",
+            "default": "./dist/governance/*.js"
         },
         "./governance/drift": {
             "types": "./dist/governance/drift.d.ts",
-            "import": "./dist/governance/drift.js"
+            "import": "./dist/governance/drift.js",
+            "default": "./dist/governance/drift.js"
         },
         "./governance/lorentz": {
             "types": "./dist/governance/lorentz.d.ts",
-            "import": "./dist/governance/lorentz.js"
+            "import": "./dist/governance/lorentz.js",
+            "default": "./dist/governance/lorentz.js"
         },
         "./governance/linchpin": {
             "types": "./dist/governance/linchpin.d.ts",
-            "import": "./dist/governance/linchpin.js"
+            "import": "./dist/governance/linchpin.js",
+            "default": "./dist/governance/linchpin.js"
         },
         "./regime/*": {
             "types": "./dist/regime/*.d.ts",
-            "import": "./dist/regime/*.js"
+            "import": "./dist/regime/*.js",
+            "default": "./dist/regime/*.js"
         },
         "./regime/bayes-filter": {
             "types": "./dist/regime/bayes-filter.d.ts",
-            "import": "./dist/regime/bayes-filter.js"
+            "import": "./dist/regime/bayes-filter.js",
+            "default": "./dist/regime/bayes-filter.js"
         },
         "./dynamics/*": {
             "types": "./dist/dynamics/*.d.ts",
-            "import": "./dist/dynamics/*.js"
+            "import": "./dist/dynamics/*.js",
+            "default": "./dist/dynamics/*.js"
         },
         "./dynamics/dimension": {
             "types": "./dist/dynamics/dimension.d.ts",
-            "import": "./dist/dynamics/dimension.js"
+            "import": "./dist/dynamics/dimension.js",
+            "default": "./dist/dynamics/dimension.js"
         }
     },
     "files": [
