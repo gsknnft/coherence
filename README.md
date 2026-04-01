@@ -1,8 +1,8 @@
-# @sigilnet/coherence
+# @gsknnft/coherence
 
 Typed coherence math and regime-analysis primitives for the Sigilnet stack.
 
-`@sigilnet/coherence` is the canonical package for:
+`@gsknnft/coherence` is the canonical package for:
 
 - spectral negentropy / coherence-density metrics
 - structural persistence (`SPI`) evaluation
@@ -18,15 +18,15 @@ the authoritative coherence layer rather than maintaining divergent runtime math
 
 Current exported surfaces include:
 
-- root package exports via `@sigilnet/coherence`
-- browser-safe bundle via `@sigilnet/coherence/browser`
-- governance helpers via `@sigilnet/coherence/governance/*`
-- regime helpers via `@sigilnet/coherence/regime/*`
-- dynamics helpers via `@sigilnet/coherence/dynamics/*`
-- geometric fitting via `@sigilnet/coherence/superformula`
+- root package exports via `@gsknnft/coherence`
+- browser-safe bundle via `@gsknnft/coherence/browser`
+- governance helpers via `@gsknnft/coherence/governance/*`
+- regime helpers via `@gsknnft/coherence/regime/*`
+- dynamics helpers via `@gsknnft/coherence/dynamics/*`
+- geometric fitting via `@gsknnft/coherence/superformula`
 - resonance / system-energy / geometric-instability primitives
-- experimental latent-regime ingress via `@sigilnet/coherence/experimental/latent-regime`
-- experimental Orch-OR projection via `@sigilnet/coherence/experimental/orch-or`
+- experimental latent-regime ingress via `@gsknnft/coherence/experimental/latent-regime`
+- experimental Orch-OR projection via `@gsknnft/coherence/experimental/orch-or`
 
 ## Naming
 
@@ -54,25 +54,25 @@ Compatibility expectations for consumers:
 
 Public release should treat the following as the supported contract:
 
-- `@sigilnet/coherence`
-- `@sigilnet/coherence/browser`
-- `@sigilnet/coherence/contracts`
-- `@sigilnet/coherence/resonance`
-- `@sigilnet/coherence/system-energy`
-- `@sigilnet/coherence/geometric-instability`
-- `@sigilnet/coherence/geometric-regime`
-- `@sigilnet/coherence/superformula`
-- `@sigilnet/coherence/fitj`
-- `@sigilnet/coherence/invariants`
-- `@sigilnet/coherence/invariants-lite`
-- `@sigilnet/coherence/ncf`
-- `@sigilnet/coherence/attractors`
-- `@sigilnet/coherence/attractors/*`
-- `@sigilnet/coherence/governance/*`
-- `@sigilnet/coherence/regime/*`
-- `@sigilnet/coherence/dynamics/*`
-- `@sigilnet/coherence/experimental/latent-regime`
-- `@sigilnet/coherence/experimental/orch-or`
+- `@gsknnft/coherence`
+- `@gsknnft/coherence/browser`
+- `@gsknnft/coherence/contracts`
+- `@gsknnft/coherence/resonance`
+- `@gsknnft/coherence/system-energy`
+- `@gsknnft/coherence/geometric-instability`
+- `@gsknnft/coherence/geometric-regime`
+- `@gsknnft/coherence/superformula`
+- `@gsknnft/coherence/fitj`
+- `@gsknnft/coherence/invariants`
+- `@gsknnft/coherence/invariants-lite`
+- `@gsknnft/coherence/ncf`
+- `@gsknnft/coherence/attractors`
+- `@gsknnft/coherence/attractors/*`
+- `@gsknnft/coherence/governance/*`
+- `@gsknnft/coherence/regime/*`
+- `@gsknnft/coherence/dynamics/*`
+- `@gsknnft/coherence/experimental/latent-regime`
+- `@gsknnft/coherence/experimental/orch-or`
 
 Anything else should be treated as internal and unstable until the package is
 actually published and versioned in the wild.
@@ -83,19 +83,19 @@ Release note: this package is published under `0.x` semantics. Pin explicit
 versions if you depend on experimental subpaths or recently added contracts.
 
 ```bash
-pnpm add @sigilnet/coherence
+pnpm add @gsknnft/coherence
 ```
 
 ## Build
 
 ```bash
-pnpm --filter @sigilnet/coherence run build
+pnpm --filter @gsknnft/coherence run build
 ```
 
 ## Test
 
 ```bash
-pnpm --filter @sigilnet/coherence run test
+pnpm --filter @gsknnft/coherence run test
 ```
 
 ## Key APIs
@@ -105,7 +105,7 @@ import {
   computeSpectralNegentropyIndex,
   spectralNegentropyDelta,
   evaluateStructuralPersistence,
-} from "@sigilnet/coherence";
+} from "@gsknnft/coherence";
 ```
 
 `computeSpectralNegentropyIndex(...)`

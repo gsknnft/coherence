@@ -1,6 +1,6 @@
 {
   "name": "@gsknnft/coherence",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": false,
   "description": "Canonical coherence math, regime analysis, and structural persistence primitives for Sigilnet.",
   "packageManager": "pnpm@10.24.0",
@@ -151,7 +151,11 @@
   "sideEffects": false,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gsknnft/sigilnet.git"
+    "url": "git+https://github.com/gsknnft/coherence.git"
+  },
+  "homepage": "https://github.com/gsknnft/coherence#readme",
+  "bugs": {
+    "url": "https://github.com/gsknnft/coherence/issues"
   },
   "license": "BSD-3-Clause",
   "publishConfig": {
