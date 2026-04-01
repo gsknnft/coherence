@@ -1,5 +1,5 @@
 {
-  "name": "@sigilnet/coherence",
+  "name": "@gsknnft/coherence",
   "version": "0.2.0",
   "private": false,
   "description": "Canonical coherence math, regime analysis, and structural persistence primitives for Sigilnet.",
