@@ -1,17 +1,19 @@
 {
     "compilerOptions": {
         "target": "ESNext",
-        "moduleResolution": "Bundler",
+        "moduleResolution": "bundler",
         "lib": ["ESNext"],
         "module": "ESNext",
-        "declaration": true,
-        "outDir": "./dist",
         "rootDir": "./src",
+        "noEmit": true,
         "strict": true,
         "esModuleInterop": true,
         "skipLibCheck": true,
         "forceConsistentCasingInFileNames": true
     },
+    "watchOptions": {
+        "excludeDirectories": ["node_modules", "dist"]
+    },
     "include": ["src", "src/attractors"],
-    "exclude": ["node_modules", "dist"]
+    "exclude": ["node_modules", "dist", "tests", "test", "coverage"]
 }

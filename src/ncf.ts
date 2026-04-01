@@ -1,4 +1,4 @@
-import { clamp01 } from "./invariants-lite";
+import { clamp01 } from "./invariants-lite.js";
 
 export type NcfState = "macro" | "balanced" | "defensive";
 export type NcfRegime = "coherent" | "transitional" | "chaos";

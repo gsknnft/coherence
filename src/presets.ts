@@ -1,6 +1,6 @@
 // @sigilnet/coherence/src/presets.ts
 
-import { SuperformulaParams } from "./superformula";
+import type { SuperformulaParams } from "./superformula.js";
 
 export const SUPERFORMULA_PRESETS = {
   coherent: {

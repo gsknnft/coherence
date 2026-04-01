@@ -1,4 +1,4 @@
-import type { CoherenceTelemetryEntry } from "./types";
+import type { CoherenceTelemetryEntry } from "./types.js";
 
 export interface CoherenceTelemetrySink {
   emit: (entry: CoherenceTelemetryEntry) => void;

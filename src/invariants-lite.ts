@@ -1,4 +1,4 @@
-import type { CoherenceState } from "./types";
+import type { CoherenceState } from "./types.js";
 
 export const DEFAULT_MIN_RESERVE = 0.2;
 

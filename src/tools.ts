@@ -1,15 +1,13 @@
-import { wt} from '@gsknnft/qwave';
-import { QuantumSignalSuite, waveletDWT, fftSpectrum, classifyRegime as cR } from '@sigilnet/qfield';
+import { createRequire } from "node:module";
 import {
   dwt,
   WaveletFamily,
-  FeatureSet,
-  FFTResult,
-  Signal,
   FFT
 } from "@sigilnet/qtransform";
+import type { FeatureSet, FFTResult, Signal } from "@sigilnet/qtransform";
 
-import { superformulaRadius, SuperformulaParams, PolarPoint, extractGeometricSignature } from './superformula.js';
+import { superformulaRadius, extractGeometricSignature } from './superformula.js';
+import type { SuperformulaParams, PolarPoint } from './superformula.js';
 
 interface SystemState {
   telemetry: number[];
@@ -94,6 +92,44 @@ export function radialProfileFFT(histogram: number[], harmonics: number) {
   fft.realTransform(spectrum, histogram);
 
   const mags = [];
+  const require = createRequire(import.meta.url);
+  const qfield = require("@sigilnet/qfield") as {
+    QuantumSignalSuite?: {
+      new (src?: string): {
+        processAndLog(signal: number[]): Promise<any>;
+        buildEffsVector?: (...args: any[]) => any;
+        evaluateFieldState?: (...args: any[]) => any;
+      };
+      spectralEntropy?: (...args: any[]) => any;
+      runFullFieldAnalysis: (signal: Float64Array) => {
+        entropy: number;
+        hilbertData: any;
+        imfs: any;
+      };
+    };
+    default?: {
+      QuantumSignalSuite?: {
+        new (src?: string): {
+          processAndLog(signal: number[]): Promise<any>;
+          buildEffsVector?: (...args: any[]) => any;
+          evaluateFieldState?: (...args: any[]) => any;
+        };
+        spectralEntropy?: (...args: any[]) => any;
+        runFullFieldAnalysis: (signal: Float64Array) => {
+          entropy: number;
+          hilbertData: any;
+          imfs: any;
+        };
+      };
+    };
+  };
+  const QuantumSignalSuite =
+    qfield.QuantumSignalSuite ?? qfield.default?.QuantumSignalSuite;
+  if (!QuantumSignalSuite) {
+    throw new Error(
+      "@sigilnet/qfield did not expose QuantumSignalSuite through its require export",
+    );
+  }
   const quantumSignalSuite = new QuantumSignalSuite('coherence-analysis');
   const { spectralEntropy, runFullFieldAnalysis } = QuantumSignalSuite;
   const { processAndLog, buildEffsVector, evaluateFieldState,  } = quantumSignalSuite;

@@ -4,8 +4,8 @@
 // Adds residual R(t) for CoV flow proxy (numerical test)
 // Falsifiable: Logs discard if no events in window
 
-import { ResolutionEvent } from "./coherence";
-import { resolveLatencyVar } from "./latency";
+import type { ResolutionEvent } from "./coherence.js";
+import { resolveLatencyVar } from "./latency.js";
 // import { CoherencePrimitives } from "./types";
 
 interface ResonanceEvent extends ResolutionEvent {

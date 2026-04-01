@@ -1,4 +1,4 @@
-import { clamp } from "./invariants";
+import { clamp } from "./invariants.js";
 
 export interface PolarPoint {
   angle: number;

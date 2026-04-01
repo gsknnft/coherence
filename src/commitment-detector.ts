@@ -20,7 +20,7 @@ CoherenceEnvelope = {
 
 // import { CoherencePrimitives } from "./types";
 
-import { resolveLatencyVar } from "./latency";
+import { resolveLatencyVar } from "./latency.js";
 
 export interface CommitmentEvent {
   timestamp: number;

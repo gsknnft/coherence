@@ -1,4 +1,9 @@
-import { COHERENCE_VECTOR_DECIMALS, CoherenceVectorScalars, COHERENCE_VECTOR_HASH_PREFIX, CoherenceVector, COHERENCE_VECTOR_SCALAR_KEYS } from "./types.js";
+import {
+  COHERENCE_VECTOR_DECIMALS,
+  COHERENCE_VECTOR_HASH_PREFIX,
+  COHERENCE_VECTOR_SCALAR_KEYS,
+} from "./types.js";
+import type { CoherenceVectorScalars, CoherenceVector } from "./types.js";
 
 
 export function serializeCoherenceVector(

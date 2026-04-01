@@ -24,6 +24,7 @@ Current exported surfaces include:
 - regime helpers via `@sigilnet/coherence/regime/*`
 - dynamics helpers via `@sigilnet/coherence/dynamics/*`
 - geometric fitting via `@sigilnet/coherence/superformula`
+- experimental latent-regime ingress via `src/experimental/latent-regime.ts`
 
 ## Naming
 
@@ -119,3 +120,18 @@ import {
 - QWormhole is currently the main downstream validation consumer. Until its
   coherence-facing imports and benches are settled, treat the package contract
   as pre-release.
+- Experimental latent-regime ingress is documented in
+  [LATENT_REGIME.md](./LATENT_REGIME.md).
+- In the current Vera stack, that latent-regime ingress is already being used as
+  a live telemetry/composition seam for runtime-emitted LLM regime metrics.
+- Current live regime inputs in Vera now include:
+  - decode shape
+    - entropy
+    - concentration
+    - margin
+  - similarity / context
+    - prompt-response similarity
+    - cross-turn consistency
+  - internal representation
+    - hidden-state drift
+    - cross-layer similarity

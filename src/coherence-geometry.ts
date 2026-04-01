@@ -29,9 +29,9 @@ EnergyDiagnostics
     ↳ inflation telemetry
 
 */
-import { computeHealth, certifyGeometryContract } from "./geometry";
-import { eigenSymmetric3x3 } from "./spectral";
-import {
+import { computeHealth, certifyGeometryContract } from "./geometry.js";
+import { eigenSymmetric3x3 } from "./spectral.js";
+import type {
   CoherenceState,
   CoherenceGeometry,
   GeometryState,
@@ -45,7 +45,7 @@ import {
   LyapunovOptions,
   PSDProjectionResult,
   Vector3,
-} from "./types";
+} from "./types.js";
 
 export const minimumSamplesForModel = (model: FitModel) => {
   const featureCount = model === "cubic" ? 10 : 4;

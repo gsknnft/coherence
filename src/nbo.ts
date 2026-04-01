@@ -1,4 +1,4 @@
-import type { Alignment, FieldSample, /* NboAttribution, */ NboOptions, NboResult, NboSummary } from "./types";
+import type { Alignment, FieldSample, /* NboAttribution, */ NboOptions, NboResult, NboSummary } from "./types.js";
 
 const EPS = 1e-12;
 

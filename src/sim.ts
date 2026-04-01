@@ -1,11 +1,11 @@
-import { CoherenceLoop } from "./loop";
-import { clamp01 } from "./invariants";
+import { CoherenceLoop } from "./loop.js";
+import { clamp01 } from "./invariants.js";
 import type {
   CoherenceConfig,
   CoherenceState,
   CouplingParams,
   FieldSample,
-} from "./types";
+} from "./types.js";
 
 export type SimulationEventKind = "jitter" | "crosstalk" | "congestion";
 

@@ -1,11 +1,11 @@
-import {
+import type {
   ConditioningMetrics,
   CurvatureMetrics,
   DistortionMetrics,
   GeometryState,
   GeometryValidity,
   StabilityMetrics,
-} from "./types";
+} from "./types.js";
 
 // Evaluate geometry contract trustworthiness
 export function certifyGeometryContract(

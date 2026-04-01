@@ -262,6 +262,117 @@ export interface CoherenceState {
   confidence?: number;
 }
 
+export type ResonancePhase =
+  | "coherent"
+  | "drifting"
+  | "dissonant"
+  | "critical";
+
+export type ResonanceSource =
+  | "coherence"
+  | "qfield"
+  | "world"
+  | "hybrid";
+
+export interface ResonanceContributor {
+  name: string;
+  value: number;
+  weight: number;
+  source?: ResonanceSource;
+}
+
+export interface ResonanceState {
+  score: number;
+  alignment: number;
+  drift: number;
+  energy: number;
+  confidence: number;
+  phase: ResonancePhase;
+  source: ResonanceSource;
+  contributors?: ResonanceContributor[];
+  ts?: number;
+}
+
+export type SystemEnergyBand =
+  | "calm"
+  | "attentive"
+  | "caution"
+  | "alert"
+  | "critical";
+
+export interface SystemEnergyInput {
+  pressure?: number | null;
+  instability?: number | null;
+  entropy?: number | null;
+  latencyMs?: number | null;
+  resonance?: number | null;
+}
+
+export interface SystemEnergyComponents {
+  pressure: number;
+  instability: number;
+  entropy: number;
+  latency: number;
+  resonanceLoss: number;
+}
+
+export interface SystemEnergyState {
+  energy: number;
+  band: SystemEnergyBand;
+  stabilityMargin: number;
+  components: SystemEnergyComponents;
+}
+
+export interface GeometricInstabilityInput {
+  geometry?: {
+    health?: number | null;
+    validityTrusted?: boolean | null;
+    curvature?: {
+      lambdaMin?: number | null;
+      conditionNumber?: number | null;
+    };
+    stability?: {
+      violationRate?: number | null;
+      p95DeltaJ?: number | null;
+      stable?: boolean | null;
+    };
+  };
+  jResolution?: {
+    resolved?: boolean | null;
+    basinHoldMet?: boolean | null;
+    lambdaMin?: number | null;
+    deltaJViolationRate?: number | null;
+  };
+  regime?: {
+    regime?: string | null;
+    confidence?: number | null;
+  };
+  morphology?: {
+    symmetry?: number | null;
+    roughness?: number | null;
+    anisotropy?: number | null;
+    fitError?: number | null;
+  };
+  transition?: {
+    driftRate?: number | null;
+    driftAccel?: number | null;
+    gamma?: number | null;
+    entropy?: number | null;
+    attractorSimilarity?: number | null;
+  };
+}
+
+export interface GeometricInstabilityState {
+  instability: number;
+  basinStrength: number;
+  unstableModes: number;
+  dominantExpansion: number;
+  curvatureRisk: number;
+  lyapunovSlack: number;
+  confidence: number;
+  diagnostics: string[];
+}
+
 export interface CoherencePrimitives {
   getCurrentState: () => CoherenceState;
   getCurrentCoupling: () => CouplingParams;

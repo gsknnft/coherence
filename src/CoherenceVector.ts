@@ -5,7 +5,7 @@ import {
   COHERENCE_VECTOR_SCALAR_KEYS,
   type CoherenceVector,
   type CoherenceVectorScalars,
-} from "./types";
+} from "./types.js";
 
 export class CoherenceVectorError extends Error {
   constructor(message: string) {

@@ -1,6 +1,6 @@
 // import { cosineSimilarity } from "./invariants";
 // import { metaObserver } from "./meta_observer";
-import { resolveLatencyVar } from "./latency";
+import { resolveLatencyVar } from "./latency.js";
 
 type Sample = Record<string, number>;
 
