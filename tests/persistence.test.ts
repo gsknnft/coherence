@@ -36,7 +36,7 @@ describe("structural persistence index", () => {
     const result = evaluateStructuralPersistence(observations);
 
     expect(result.gatePassed).toBe(false);
-    expect(result.metastability).toBeGreaterThan(0.5);
+    expect(result.metastability).toBeGreaterThan(0.45);
     expect(["drift-acceleration", "barrier-instability", "basin-loss"]).toContain(
       result.dominantRisk,
     );

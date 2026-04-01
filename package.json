@@ -1,148 +1,174 @@
 {
-    "name": "@sigilnet/coherence",
-    "version": "0.1.0",
-    "private": false,
-    "description": "Canonical coherence math, regime analysis, and structural persistence primitives for Sigilnet.",
-    "packageManager": "pnpm@10.24.0",
-    "type": "module",
-    "main": "./dist/index.js",
-    "module": "./dist/index.js",
-    "types": "./dist/index.d.ts",
-    "exports": {
-        ".": {
-            "types": "./dist/index.d.ts",
-            "import": "./dist/index.js",
-            "default": "./dist/index.js"
-        },
-        "./package.json": "./package.json",
-        "./browser": {
-            "types": "./dist/browser.d.ts",
-            "import": "./dist/browser.js",
-            "default": "./dist/browser.js"
-        },
-        "./contracts": {
-            "types": "./dist/contracts.d.ts",
-            "import": "./dist/contracts.js",
-            "default": "./dist/contracts.js"
-        },
-        "./attractors": {
-            "types": "./dist/attractors/index.d.ts",
-            "import": "./dist/attractors/index.js",
-            "default": "./dist/attractors/index.js"
-        },
-        "./attractors/index": {
-            "types": "./dist/attractors/index.d.ts",
-            "import": "./dist/attractors/index.js",
-            "default": "./dist/attractors/index.js"
-        },
-        "./attractors/*": {
-            "types": "./dist/attractors/*.d.ts",
-            "import": "./dist/attractors/*.js",
-            "default": "./dist/attractors/*.js"
-        },
-        "./fitj": {
-            "types": "./dist/fitj.d.ts",
-            "import": "./dist/fitj.js",
-            "default": "./dist/fitj.js"
-        },
-        "./invariants": {
-            "types": "./dist/invariants.d.ts",
-            "import": "./dist/invariants.js",
-            "default": "./dist/invariants.js"
-        },
-        "./invariants-lite": {
-            "types": "./dist/invariants-lite.d.ts",
-            "import": "./dist/invariants-lite.js",
-            "default": "./dist/invariants-lite.js"
-        },
-        "./ncf": {
-            "types": "./dist/ncf.d.ts",
-            "import": "./dist/ncf.js",
-            "default": "./dist/ncf.js"
-        },
-        "./geometric-regime": {
-            "types": "./dist/geometric-regime.d.ts",
-            "import": "./dist/geometric-regime.js",
-            "default": "./dist/geometric-regime.js"
-        },
-        "./superformula": {
-            "types": "./dist/superformula.d.ts",
-            "import": "./dist/superformula.js",
-            "default": "./dist/superformula.js"
-        },
-        "./types": {
-            "types": "./dist/types.d.ts",
-            "import": "./dist/types.js",
-            "default": "./dist/types.js"
-        },
-        "./governance/*": {
-            "types": "./dist/governance/*.d.ts",
-            "import": "./dist/governance/*.js",
-            "default": "./dist/governance/*.js"
-        },
-        "./governance/drift": {
-            "types": "./dist/governance/drift.d.ts",
-            "import": "./dist/governance/drift.js",
-            "default": "./dist/governance/drift.js"
-        },
-        "./governance/lorentz": {
-            "types": "./dist/governance/lorentz.d.ts",
-            "import": "./dist/governance/lorentz.js",
-            "default": "./dist/governance/lorentz.js"
-        },
-        "./governance/linchpin": {
-            "types": "./dist/governance/linchpin.d.ts",
-            "import": "./dist/governance/linchpin.js",
-            "default": "./dist/governance/linchpin.js"
-        },
-        "./regime/*": {
-            "types": "./dist/regime/*.d.ts",
-            "import": "./dist/regime/*.js",
-            "default": "./dist/regime/*.js"
-        },
-        "./regime/bayes-filter": {
-            "types": "./dist/regime/bayes-filter.d.ts",
-            "import": "./dist/regime/bayes-filter.js",
-            "default": "./dist/regime/bayes-filter.js"
-        },
-        "./dynamics/*": {
-            "types": "./dist/dynamics/*.d.ts",
-            "import": "./dist/dynamics/*.js",
-            "default": "./dist/dynamics/*.js"
-        },
-        "./dynamics/dimension": {
-            "types": "./dist/dynamics/dimension.d.ts",
-            "import": "./dist/dynamics/dimension.js",
-            "default": "./dist/dynamics/dimension.js"
-        }
+  "name": "@sigilnet/coherence",
+  "version": "0.2.0",
+  "private": false,
+  "description": "Canonical coherence math, regime analysis, and structural persistence primitives for Sigilnet.",
+  "packageManager": "pnpm@10.24.0",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
     },
-    "files": [
-        "dist",
-        "package.json",
-        "README.md",
-        "CHANGELOG.md"
-    ],
-    "sideEffects": false,
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/gsknnft/sigilnet.git"
+    "./package.json": "./package.json",
+    "./browser": {
+      "types": "./dist/browser.d.ts",
+      "import": "./dist/browser.js",
+      "default": "./dist/browser.js"
     },
-    "license": "BSD-3-Clause",
-    "publishConfig": {
-        "access": "public"
+    "./contracts": {
+      "types": "./dist/contracts.d.ts",
+      "import": "./dist/contracts.js",
+      "default": "./dist/contracts.js"
     },
-    "scripts": {
-        "build": "pnpm clean && tsc -p tsconfig.build.json",
-        "tsc:noemit": "tsc -b --noEmit",
-        "test": "vitest run --reporter tree",
-        "clean": "node -e \"require('node:fs').rmSync('dist',{recursive:true,force:true})\"",
-        "dev": "tsc -p tsconfig.json --watch --preserveWatchOutput"
+    "./attractors": {
+      "types": "./dist/attractors/index.d.ts",
+      "import": "./dist/attractors/index.js",
+      "default": "./dist/attractors/index.js"
     },
-    "devDependencies": {
-        "vitest": "4.0.18",
-        "@vitest/coverage-v8": "4.0.18",
-        "@types/node": "^24.10.1",
-        "ts-node": "^10.9.2",
-        "typescript": "^5.9.3"
+    "./attractors/index": {
+      "types": "./dist/attractors/index.d.ts",
+      "import": "./dist/attractors/index.js",
+      "default": "./dist/attractors/index.js"
+    },
+    "./attractors/*": {
+      "types": "./dist/attractors/*.d.ts",
+      "import": "./dist/attractors/*.js",
+      "default": "./dist/attractors/*.js"
+    },
+    "./fitj": {
+      "types": "./dist/fitj.d.ts",
+      "import": "./dist/fitj.js",
+      "default": "./dist/fitj.js"
+    },
+    "./resonance": {
+      "types": "./dist/resonance.d.ts",
+      "import": "./dist/resonance.js",
+      "default": "./dist/resonance.js"
+    },
+    "./system-energy": {
+      "types": "./dist/system-energy.d.ts",
+      "import": "./dist/system-energy.js",
+      "default": "./dist/system-energy.js"
+    },
+    "./geometric-instability": {
+      "types": "./dist/geometric-instability.d.ts",
+      "import": "./dist/geometric-instability.js",
+      "default": "./dist/geometric-instability.js"
+    },
+    "./invariants": {
+      "types": "./dist/invariants.d.ts",
+      "import": "./dist/invariants.js",
+      "default": "./dist/invariants.js"
+    },
+    "./invariants-lite": {
+      "types": "./dist/invariants-lite.d.ts",
+      "import": "./dist/invariants-lite.js",
+      "default": "./dist/invariants-lite.js"
+    },
+    "./ncf": {
+      "types": "./dist/ncf.d.ts",
+      "import": "./dist/ncf.js",
+      "default": "./dist/ncf.js"
+    },
+    "./geometric-regime": {
+      "types": "./dist/geometric-regime.d.ts",
+      "import": "./dist/geometric-regime.js",
+      "default": "./dist/geometric-regime.js"
+    },
+    "./superformula": {
+      "types": "./dist/superformula.d.ts",
+      "import": "./dist/superformula.js",
+      "default": "./dist/superformula.js"
+    },
+    "./types": {
+      "types": "./dist/types.d.ts",
+      "import": "./dist/types.js",
+      "default": "./dist/types.js"
+    },
+    "./governance/*": {
+      "types": "./dist/governance/*.d.ts",
+      "import": "./dist/governance/*.js",
+      "default": "./dist/governance/*.js"
+    },
+    "./governance/drift": {
+      "types": "./dist/governance/drift.d.ts",
+      "import": "./dist/governance/drift.js",
+      "default": "./dist/governance/drift.js"
+    },
+    "./governance/lorentz": {
+      "types": "./dist/governance/lorentz.d.ts",
+      "import": "./dist/governance/lorentz.js",
+      "default": "./dist/governance/lorentz.js"
+    },
+    "./governance/linchpin": {
+      "types": "./dist/governance/linchpin.d.ts",
+      "import": "./dist/governance/linchpin.js",
+      "default": "./dist/governance/linchpin.js"
+    },
+    "./regime/*": {
+      "types": "./dist/regime/*.d.ts",
+      "import": "./dist/regime/*.js",
+      "default": "./dist/regime/*.js"
+    },
+    "./regime/bayes-filter": {
+      "types": "./dist/regime/bayes-filter.d.ts",
+      "import": "./dist/regime/bayes-filter.js",
+      "default": "./dist/regime/bayes-filter.js"
+    },
+    "./dynamics/*": {
+      "types": "./dist/dynamics/*.d.ts",
+      "import": "./dist/dynamics/*.js",
+      "default": "./dist/dynamics/*.js"
+    },
+    "./dynamics/dimension": {
+      "types": "./dist/dynamics/dimension.d.ts",
+      "import": "./dist/dynamics/dimension.js",
+      "default": "./dist/dynamics/dimension.js"
+    },
+    "./experimental/latent-regime": {
+      "types": "./dist/experimental/latent-regime.d.ts",
+      "import": "./dist/experimental/latent-regime.js",
+      "default": "./dist/experimental/latent-regime.js"
+    },
+    "./experimental/orch-or": {
+      "types": "./dist/experimental/orch-or.d.ts",
+      "import": "./dist/experimental/orch-or.js",
+      "default": "./dist/experimental/orch-or.js"
     }
+  },
+  "files": [
+    "dist",
+    "package.json",
+    "README.md",
+    "LATENT_REGIME.md",
+    "CHANGELOG.md"
+  ],
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gsknnft/sigilnet.git"
+  },
+  "license": "BSD-3-Clause",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "pnpm clean && tsc -p tsconfig.build.json",
+    "tsc:noemit": "tsc -b --noEmit",
+    "test": "vitest run --reporter tree",
+    "clean": "node -e \"require('node:fs').rmSync('dist',{recursive:true,force:true})\"",
+    "dev": "tsc -p tsconfig.json --watch --preserveWatchOutput"
+  },
+  "devDependencies": {
+    "vitest": "4.0.18",
+    "@vitest/coverage-v8": "4.0.18",
+    "@types/node": "^24.10.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
 }

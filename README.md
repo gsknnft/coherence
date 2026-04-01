@@ -24,7 +24,9 @@ Current exported surfaces include:
 - regime helpers via `@sigilnet/coherence/regime/*`
 - dynamics helpers via `@sigilnet/coherence/dynamics/*`
 - geometric fitting via `@sigilnet/coherence/superformula`
-- experimental latent-regime ingress via `src/experimental/latent-regime.ts`
+- resonance / system-energy / geometric-instability primitives
+- experimental latent-regime ingress via `@sigilnet/coherence/experimental/latent-regime`
+- experimental Orch-OR projection via `@sigilnet/coherence/experimental/orch-or`
 
 ## Naming
 
@@ -40,15 +42,13 @@ Avoid collapsing those into one generic "entropy" metric.
 
 ## Status
 
-Release status: pre-release / internal validation.
+Release status: published 0.x package with an explicitly narrow contract.
 
-Current blockers before wider public release:
+Compatibility expectations for consumers:
 
-- verify export contract and tarball contents with `pnpm pack --json`
-- complete README/API examples for the main exports
-- finalize naming and docs around `SNI` / `SPI`
-- validate release confidence on real traces and regression fixtures
-- resolve downstream consumer validation in `@gsknnft/qwormhole`
+- minor releases may add new primitives while the package remains in `0.x`
+- experimental subpaths are published, but should still be treated as less stable than the root contract
+- downstream validation in `@gsknnft/qwormhole` and Vera remains the main confidence signal for wider adoption
 
 ## Package Contract
 
@@ -57,6 +57,9 @@ Public release should treat the following as the supported contract:
 - `@sigilnet/coherence`
 - `@sigilnet/coherence/browser`
 - `@sigilnet/coherence/contracts`
+- `@sigilnet/coherence/resonance`
+- `@sigilnet/coherence/system-energy`
+- `@sigilnet/coherence/geometric-instability`
 - `@sigilnet/coherence/geometric-regime`
 - `@sigilnet/coherence/superformula`
 - `@sigilnet/coherence/fitj`
@@ -68,15 +71,16 @@ Public release should treat the following as the supported contract:
 - `@sigilnet/coherence/governance/*`
 - `@sigilnet/coherence/regime/*`
 - `@sigilnet/coherence/dynamics/*`
+- `@sigilnet/coherence/experimental/latent-regime`
+- `@sigilnet/coherence/experimental/orch-or`
 
 Anything else should be treated as internal and unstable until the package is
 actually published and versioned in the wild.
 
 ## Install
 
-Release note: this package is not yet publicly published/stable. Until that
-changes, consume it from the workspace/monorepo rather than treating npm
-install docs as final external guidance.
+Release note: this package is published under `0.x` semantics. Pin explicit
+versions if you depend on experimental subpaths or recently added contracts.
 
 ```bash
 pnpm add @sigilnet/coherence
@@ -105,9 +109,11 @@ import {
 ```
 
 `computeSpectralNegentropyIndex(...)`
+
 - computes a bounded finite-window spectral coherence proxy
 
 `evaluateStructuralPersistence(...)`
+
 - computes persistence score, metastability, and gate result across a rolling
   observation window
 
