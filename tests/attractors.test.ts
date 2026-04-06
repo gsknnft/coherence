@@ -1,4 +1,4 @@
-// @sigilnet/coherence/tests/attractors.test.ts
+// @gsknnft/coherence/tests/attractors.test.ts
 
 // import { parseArgs } from "util";
 import { describe, expect, it } from "vitest";
@@ -192,7 +192,7 @@ describe("Strange Attractors", () => {
       expect(orthogonal.diagnostics.flowAlignmentMode).toBe("orthogonal");
 
       expect(descent.diagnostics.flowAlignment).not.toBeNull();
-      expect((descent.diagnostics.flowAlignment ?? 0)).toBeLessThan(-0.95);
+      expect(descent.diagnostics.flowAlignment ?? 0).toBeLessThan(-0.95);
       expect(descent.diagnostics.flowAlignmentMode).toBe("descent");
     });
   });

@@ -58,10 +58,11 @@ export async function sigAnalysis(signal: number[]): Promise<{
   entropy: number;
 }> {
   const QuantumSignalSuite = getQuantumSignalSuite();
+  const canonicalSignal = Float64Array.from(signal);
   const { imfs, hilbertData, entropy } =
-    QuantumSignalSuite.runFullFieldAnalysis(Float64Array.from(signal));
+    QuantumSignalSuite.runFullFieldAnalysis(canonicalSignal);
   const suite = new QuantumSignalSuite();
   const { signalAnalysis } = await suite.processAndLog(signal);
-  const qfield = QuantumSignalSuite.evaluateSignalVector(imfs[0]);
+  const qfield = QuantumSignalSuite.evaluateSignalVector(canonicalSignal);
   return { signalAnalysis, qfield, imfs, hilbertData, entropy };
 }

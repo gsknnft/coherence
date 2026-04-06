@@ -1,4 +1,4 @@
-// @sigilnet/coherence/src/attractors/rossler.ts
+// @gsknnft/coherence/src/attractors/rossler.ts
 
 export const ROSSLER_DEFAULT_PARAMS = {
   a: 0.2,

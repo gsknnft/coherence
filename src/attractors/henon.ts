@@ -1,4 +1,4 @@
-// @sigilnet/coherence/src/attractors/henon.ts
+// @gsknnft/coherence/src/attractors/henon.ts
 
 export const DEFAULT_HENON_PARAMS = {
   a: 1.4,

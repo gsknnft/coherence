@@ -1,6 +1,6 @@
 {
   "name": "@gsknnft/coherence",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "private": false,
   "description": "Canonical coherence math, regime analysis, and structural persistence primitives for Sigilnet.",
   "packageManager": "pnpm@10.24.0",

@@ -1,10 +1,8 @@
-// @sigilnet/coherence/tests/strange-attractors.test.ts
-import { describe, it, expect } from "vitest";
+// @gsknnft/coherence/tests/strange-attractors.test.ts
+import { describe, expect, it } from "vitest";
+import { computeAizawa } from "../src/attractors/aizawa";
+import { projectToPolar } from "../src/attractors/projection";
 import { extractGeometricSignature } from "../src/superformula.js";
-import { classifyGeometricRegime } from "../src/geometric-regime.js";
-import { generateAizawaAttractor } from "../src/tools.js";
-import { computeAizawa } from '../src/attractors/aizawa';
-import { projectToPolar } from '../src/attractors/projection';
 
 function downsamplePolar<T>(points: T[], maxPoints = 1500): T[] {
   if (points.length <= maxPoints) return points;
@@ -25,7 +23,7 @@ const FAST_TEST_FIT = {
 function circleSignature() {
   const circlePoints = Array.from({ length: 1000 }, (_, i) => ({
     angle: (i / 1000) * 2 * Math.PI,
-    radius: 1.0
+    radius: 1.0,
   }));
   return extractGeometricSignature(circlePoints, {
     includeSuperformulaFit: true,
@@ -33,16 +31,16 @@ function circleSignature() {
   });
 }
 
-describe('Strange Attractor Detection', () => {
-  it('identifies Aizawa attractor as chaotic', () => {
+describe("Strange Attractor Detection", () => {
+  it("identifies Aizawa attractor as chaotic", () => {
     // Generate Aizawa attractor
     const positions = computeAizawa({
       steps: 10000,
-      dt: 0.01
+      dt: 0.01,
     });
 
     // Project to 2D and convert to polar
-    const polarPoints = downsamplePolar(projectToPolar(positions, 'xy'));
+    const polarPoints = downsamplePolar(projectToPolar(positions, "xy"));
 
     // Extract geometric signature
     const signature = extractGeometricSignature(polarPoints, {
@@ -58,12 +56,12 @@ describe('Strange Attractor Detection', () => {
     expect(signature.anisotropy).toBeGreaterThan(baselineCircle.anisotropy);
   });
 
-  it('distinguishes Aizawa from circle', () => {
+  it("distinguishes Aizawa from circle", () => {
     const circleSig = circleSignature();
 
     // Generate Aizawa
     const aizawa = computeAizawa({ steps: 10000 });
-    const aizawaPolar = downsamplePolar(projectToPolar(aizawa, 'xy'));
+    const aizawaPolar = downsamplePolar(projectToPolar(aizawa, "xy"));
     const aizawaSig = extractGeometricSignature(aizawaPolar, {
       includeSuperformulaFit: true,
       fit: FAST_TEST_FIT,

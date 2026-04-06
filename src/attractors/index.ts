@@ -1,34 +1,38 @@
-// @sigilnet/coherence/src/attractors/index.ts
-export * from "./projection.js";
-export * from "./comparison.js";
+// @gsknnft/coherence/src/attractors/index.ts
 export * from "./aizawa.js";
-export * from "./lorenz.js";
-export * from "./rossler.js";
-export * from "./henon.js";
+export {
+  AIZAWA_DEFAULT_PARAMS as AIZAWA_PARAMS,
+  computeAizawa,
+} from "./aizawa.js";
+export * from "./comparison.js";
 export * from "./duffing.js";
+export {
+  computeDuffing,
+  DEFAULT_DUFFING_PARAMS,
+  DUFFING_PRESETS,
+} from "./duffing.js";
+export * from "./henon.js";
+export { computeHenon, DEFAULT_HENON_PARAMS, HENON_PRESETS } from "./henon.js";
+export * from "./lorenz.js";
+export {
+  computeLorenz,
+  LORENZ_DEFAULT_PARAMS as LORENZ_PARAMS,
+  LORENZ_PRESETS,
+} from "./lorenz.js";
+export * from "./projection.js";
+export { projectToPolar } from "./projection.js";
+export * from "./rossler.js";
+export {
+  computeRossler,
+  ROSSLER_DEFAULT_PARAMS as ROSSLER_PARAMS,
+  ROSSLER_PRESETS,
+} from "./rossler.js";
 
 import { computeAizawa } from "./aizawa.js";
 import { computeDuffing } from "./duffing.js";
 import { computeHenon } from "./henon.js";
 import { computeLorenz } from "./lorenz.js";
 import { computeRossler } from "./rossler.js";
-export { computeHenon, DEFAULT_HENON_PARAMS, HENON_PRESETS } from "./henon.js";
-export { computeDuffing, DEFAULT_DUFFING_PARAMS, DUFFING_PRESETS } from "./duffing.js";
-export {
-  computeAizawa,
-  AIZAWA_DEFAULT_PARAMS as AIZAWA_PARAMS,
-} from "./aizawa.js";
-export {
-  computeLorenz,
-  LORENZ_DEFAULT_PARAMS as LORENZ_PARAMS,
-  LORENZ_PRESETS,
-} from "./lorenz.js";
-export {
-  computeRossler,
-  ROSSLER_DEFAULT_PARAMS as ROSSLER_PARAMS,
-  ROSSLER_PRESETS
-} from './rossler.js';
-export { projectToPolar } from './projection.js';
 
 export type AttractorType =
   | "aizawa"
@@ -37,13 +41,13 @@ export type AttractorType =
   | "henon"
   | "duffing";
 
-  export const ALL_ATTRACTORS: AttractorType[] = [
-    "aizawa",
-    "lorenz",
-    "rossler",
-    "henon",
-    "duffing",
-  ];
+export const ALL_ATTRACTORS: AttractorType[] = [
+  "aizawa",
+  "lorenz",
+  "rossler",
+  "henon",
+  "duffing",
+];
 
 export interface AttractorConfig {
   type: AttractorType;
@@ -92,7 +96,6 @@ export const ATTRACTOR_METADATA: Record<AttractorType, AttractorMetadata> = {
     description: "Forced nonlinear oscillator (physical model)",
   },
 };
-
 
 /**
  * Unified attractor generation interface

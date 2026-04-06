@@ -1,4 +1,4 @@
-// @sigilnet/coherence/src/attractors/duffing.ts
+// @gsknnft/coherence/src/attractors/duffing.ts
 
 export const DEFAULT_DUFFING_PARAMS = {
   alpha: -1,

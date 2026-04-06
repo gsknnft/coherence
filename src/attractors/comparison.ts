@@ -1,11 +1,15 @@
-// @sigilnet/coherence/src/attractors/comparison.ts
+// @gsknnft/coherence/src/attractors/comparison.ts
 
-import { computeAttractor, projectToPolar, type AttractorType } from "./index.js";
 import {
   extractGeometricSignature,
   type GeometricSignature,
 } from "../superformula.js";
 import type { GeometryEvalGrad, Vector3 } from "../types.js";
+import {
+  computeAttractor,
+  projectToPolar,
+  type AttractorType,
+} from "./index.js";
 
 type ProjectionPlane = "xy" | "xz" | "yz";
 type FlowAlignmentMode =
@@ -47,7 +51,10 @@ const COMPARISON_FIT = {
   huberDelta: 0.15,
 };
 
-function downsamplePolar<T>(points: T[], maxPoints = COMPARISON_MAX_POINTS): T[] {
+function downsamplePolar<T>(
+  points: T[],
+  maxPoints = COMPARISON_MAX_POINTS,
+): T[] {
   if (points.length <= maxPoints) return points;
   const stride = Math.max(1, Math.floor(points.length / maxPoints));
   const sampled: T[] = [];
@@ -149,9 +156,15 @@ export function compareToAttractors(
   const scores: Record<AttractorType, number> = {
     aizawa: computeSimilarity(sig, getReferenceSignature("aizawa", projection)),
     lorenz: computeSimilarity(sig, getReferenceSignature("lorenz", projection)),
-    rossler: computeSimilarity(sig, getReferenceSignature("rossler", projection)),
+    rossler: computeSimilarity(
+      sig,
+      getReferenceSignature("rossler", projection),
+    ),
     henon: computeSimilarity(sig, getReferenceSignature("henon", projection)),
-    duffing: computeSimilarity(sig, getReferenceSignature("duffing", projection)),
+    duffing: computeSimilarity(
+      sig,
+      getReferenceSignature("duffing", projection),
+    ),
   };
 
   const bestMatch = Object.entries(scores).sort(([, a], [, b]) => b - a)[0] as [

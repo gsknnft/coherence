@@ -1,5 +1,14 @@
 # Changelog
 
+## Unreleased (next: 0.2.1)
+
+- Attractor library refactored to use `@gsknnft/coherence` scope; Aizawa,
+  Lorenz, Rössler, Duffing, Hénon attractors updated for tighter type contracts.
+- `attractors/comparison.ts` now exports a unified attractor comparison API for
+  downstream consumers (QWormhole, vera-campus-ui).
+- `presets.ts` cleaned up to remove duplicate defaults.
+- Minor fix to `qvariants.ts` Lyapunov exponent edge-case handling.
+
 ## 0.2.0 - 2026-04-01
 
 - Added the latent-regime and Orch-OR experimental exports for publishable ESM builds.

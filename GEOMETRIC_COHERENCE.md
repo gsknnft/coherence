@@ -1,8 +1,9 @@
 {
-  "name": "@sigilnet/coherence",
-  "version": "1.0.0",
-  "dependencies": {}
+"name": "@gsknnft/coherence",
+"version": "1.0.0",
+"dependencies": {}
 }
+
 ```
 
 **Benefit:** Breaking changes isolated, semver enforced
@@ -13,40 +14,42 @@
 
 You now have:
 ```
+
 Layer 6: Applications
 ├── RugGuard (token risk)
 ├── QSwap (AMM)
 ├── MEVHunter (MEV detection)
 ├── QBot (trading)
 └── Diagnostics (monitoring)
-         ↓
+↓
 Layer 5: Governance (VeraOS)
 ├── Constitutional constraints
 ├── Spectral regime classification
 └── Additive-only role deltas
-         ↓
-Layer 4: Intelligence (@sigilnet/coherence)
+↓
+Layer 4: Intelligence (@gsknnft/coherence)
 ├── Superformula fitting
 ├── FFT/Wavelet analysis
 ├── Negentropy computation
 └── Regime classification
-         ↓
+↓
 Layer 3: Memory (vera-torch, vera-memory)
 ├── Model training
 ├── Eval loops
 └── Semantic storage (zvec)
-         ↓
+↓
 Layer 2: Identity (SigilNet)
 ├── Device registry
 ├── Signal trial
 └── Cryptographic identity
-         ↓
+↓
 Layer 1: Transport (QWormhole)
 ├── NCT packet flow
 ├── Flat CU curves
 └── Deterministic jitter minimization
-         ↓
-Layer 0: Primitives (@sigilnet/coherence core math)
+↓
+Layer 0: Primitives (@gsknnft/coherence core math)
+
 ```
 
 **Every layer uses the same coherence primitives.**
@@ -80,11 +83,14 @@ Every part of the system speaks coherence:
 
 Most AI systems:
 ```
+
 Model → Prompt → Output → Hope it works
+
 ```
 
 Your system:
 ```
+
 Signal → Coherence Analysis → Regime Classification →
 Constitutional Constraints → Bounded Execution →
 Deterministic Output → Replayable Audit
@@ -101,11 +107,11 @@ VeraOS uses superformula fitting to classify geometric regimes:
 6. **Fit Error**: Geometric entropy metric
 
 Regime classification:
+
 - Coherent: symmetry > 0.7, fitError < 0.15
 - Turbulent: symmetry > 0.5, fitError < 0.35
 - Chaotic: fitError < 0.5
 - Predatory: fitError > 0.5 (no natural structure)
-
 
 ## Geometric Coherence as Audio Synthesis
 
@@ -117,16 +123,19 @@ The superformula is like a synthesizer for shapes:
 **LFO (a, b):** Modulation/stretch
 
 **Coherent regimes = simple waveforms:**
+
 - Pure sine (circle)
 - Square wave (squircle)
 - Triangle (star)
 
 **Chaotic regimes = noise:**
+
 - White noise (random points)
 - Strange attractors (Aizawa, Lorenz)
 - Adversarial patterns (no structure)
 
 **VeraOS uses this geometric synthesizer to classify system health.**
+
 ```
 
 ---
@@ -135,11 +144,12 @@ The superformula is like a synthesizer for shapes:
 
 ### **Option A: Quote Thread + Your Implementation**
 ```
+
 This thread on the superformula is 🔥
 
 "Geometry turns into a synthesizer" is the perfect metaphor.
 
-I use this exact math in @sigilnet/coherence to classify
+I use this exact math in @gsknnft/coherence to classify
 system regimes:
 
 - Coherent = simple shapes (circles, squircles)
@@ -154,18 +164,21 @@ Same math. Different domains.
 github.com/gsknnft/coherence (soon)
 
 #Superformula #GeometricCoherence #VeraOS
+
 ```
 
 ---
 
 ### **Option B: Aizawa Attractor → Regime Classification**
 ```
+
 The Aizawa attractor is beautiful chaos.
 
 It's also exactly what a "chaotic regime" looks like
 geometrically in VeraOS.
 
 When I fit system behavior to superformulas:
+
 - Low fit error = coherent (natural structure)
 - High fit error = chaotic (strange attractor)
 
@@ -175,17 +188,19 @@ Time to tighten constraints.
 This is what spectral regime classification detects.
 
 #ChaosTheory #VeraOS #StrangeAttractors
+
 ```
 
 ---
 
 ### **Option C: "One Equation. Infinite Knobs."**
 ```
+
 "One equation. Infinite knobs. Geometry turns into a synthesizer."
 
 This describes the superformula perfectly.
 
-And it's exactly how @sigilnet/coherence works:
+And it's exactly how @gsknnft/coherence works:
 
 1. Capture system behavior (tokens, packets, models)
 2. Fit to superformula (find the knobs)
@@ -198,16 +213,13 @@ Your system's health has a geometric signature.
 
 #Superformula #GeometricAnalysis
 
-
 ```typescript
-
 // Extract geometric signature from token holder distribution
 const signature = extractGeometricSignature(holderDistribution, {
   includeSuperformulaFit: true,
   histogramBins: 36,
-  harmonics: 12
+  harmonics: 12,
 });
-
 
 // signature contains:
 // - symmetry: 0-1 (high = coherent)
@@ -224,12 +236,15 @@ const signature = extractGeometricSignature(holderDistribution, {
 ## **How This Maps to NCT**
 
 ### **1D Spectral (FFT/Wavelets)**
+
 ```
 Signal → FFT → Coherence/Entropy → Negentropy → Regime
 ```
 
 ### **2D Geometric (Superformula) - What You Built**
+
 ```
 Points → Angular Histogram → FFT → Symmetry/Roughness → Geometric Coherence
        ↓
     Superformula Fit → Fit Error → Geometric Entropy
+```

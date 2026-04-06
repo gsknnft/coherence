@@ -1,6 +1,6 @@
 # Latent Regime Observation
 
-`@sigilnet/coherence` now includes an experimental ingress for model-internal
+`@gsknnft/coherence` now includes an experimental ingress for model-internal
 telemetry under `src/experimental/latent-regime.ts`.
 
 This is not a new coherence ontology. It is a transport and composition seam

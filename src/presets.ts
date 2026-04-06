@@ -1,4 +1,4 @@
-// @sigilnet/coherence/src/presets.ts
+// @gsknnft/coherence/src/presets.ts
 
 import type { SuperformulaParams } from "./superformula.js";
 
@@ -28,7 +28,10 @@ export function matchToPreset(
   let bestDistance = Number.POSITIVE_INFINITY;
 
   for (const [key, preset] of Object.entries(SUPERFORMULA_PRESETS) as Array<
-    [keyof typeof SUPERFORMULA_PRESETS, (typeof SUPERFORMULA_PRESETS)[keyof typeof SUPERFORMULA_PRESETS]]
+    [
+      keyof typeof SUPERFORMULA_PRESETS,
+      (typeof SUPERFORMULA_PRESETS)[keyof typeof SUPERFORMULA_PRESETS],
+    ]
   >) {
     const p = preset.params;
     const distance =
@@ -47,7 +50,6 @@ export function matchToPreset(
 
   return bestDistance <= 0.6 && best ? best : "unknown";
 }
-
 
 /*
 // Coherent regime = simple superformula (low m, symmetric n values)

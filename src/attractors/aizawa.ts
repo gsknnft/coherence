@@ -1,6 +1,6 @@
-// @sigilnet/coherence/src/attractors/aizawa.ts
+// @gsknnft/coherence/src/attractors/aizawa.ts
 
-// @sigilnet/coherence/src/attractors/aizawa.ts
+// @gsknnft/coherence/src/attractors/aizawa.ts
 
 export const AIZAWA_DEFAULT_PARAMS = {
   a: 0.95,

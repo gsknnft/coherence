@@ -1,4 +1,4 @@
-// @sigilnet/coherence/src/attractors/lorenz.ts
+// @gsknnft/coherence/src/attractors/lorenz.ts
 
 export const LORENZ_DEFAULT_PARAMS = {
   sigma: 10,
