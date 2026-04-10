@@ -223,7 +223,7 @@ export interface GeometryState {
   b: Vector3;
   T?: number[][][];
   c: number;
-  fitStats: {
+  fitStats?: {
     samples: number;
     mse: number[];
     r2: number[];
@@ -231,8 +231,8 @@ export interface GeometryState {
     psdAttempts: number;
     ridgeLambda: number;
   };
-  curvature: CurvatureMetrics;
-  stability: StabilityMetrics;
+  curvature?: CurvatureMetrics;
+  stability?: StabilityMetrics;
   distortion?: DistortionMetrics;
   conditioning: ConditioningMetrics;
   health: number;
