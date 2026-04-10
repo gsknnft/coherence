@@ -40,6 +40,162 @@ type ExtendedCoherenceFingerprint = {
   lambdaMin: number;
 };
 
+type SliceAxis = "M" | "V" | "R";
+type GeometricRegime = "coherent" | "transitional" | "chaotic" | "predatory";
+type FlowAlignmentMode =
+  | "descent"
+  | "orthogonal"
+  | "uphill"
+  | "mixed"
+  | "unavailable";
+
+type SemanticRegimeLabel =
+  | "stable-gradient"
+  | "stable-orbit"
+  | "chaotic"
+  | "turbulent"
+  | "unstable"
+  | "model-mismatch";
+type DimensionBand =
+  | "fixed-point"
+  | "limit-cycle"
+  | "torus"
+  | "fractal"
+  | "diffusive"
+  | "undetermined";
+type LinchpinMetric =
+  | "alignment"
+  | "alignmentDelta"
+  | "dimension"
+  | "dimensionDelta"
+  | "driftRate"
+  | "driftAccel"
+  | "gamma"
+  | "entropy"
+  | "lambdaMin"
+  | "attractorSimilarity";
+type LinchpinDirection = "positive" | "negative" | "mixed";
+type LinchpinScore = {
+  metric: LinchpinMetric;
+  influence: number;
+  correlation: number;
+  leadSteps: number;
+  sampleCount: number;
+  eventCount: number;
+  direction: LinchpinDirection;
+};
+
+export interface GeometryFrame extends GeometryState {
+  dataSource?: "mock" | "ws" | "poll" | "transport";
+  regimeOverlayActive?: boolean;
+  stabilityIndicator?: string; // optional display hint
+  state?: Vector3; // Current state
+  history?: Vector3[]; // History of states
+  J?: number[][]; // J values over a grid
+  geometricSignature?: {
+    regime: GeometricRegime;
+    confidence: number;
+    fitError: number;
+    fitErrorStability: number;
+    symmetry: number;
+    roughness: number;
+    anisotropy: number;
+    sampleSize: number;
+  };
+  geometricTrend?: Array<{
+    ts: number;
+    fitError: number;
+    regime: GeometricRegime;
+    confidence: number;
+  }>;
+  jResolution?: {
+    resolved: boolean;
+    reasons: string[];
+    gradNorm: number;
+    lambdaMin: number;
+    deltaJViolationRate: number;
+    basinHoldMet: boolean;
+  };
+  attractorComparison?: {
+    bestMatch: string | null;
+    similarity: number;
+    regime: "coherent" | "turbulent" | "chaotic" | "predatory";
+    diagnostics?: {
+      flowAlignment?: number | null;
+      flowAlignmentAbs?: number | null;
+      flowAlignmentSamples?: number;
+      flowAlignmentMode?: FlowAlignmentMode;
+      matchScore?: number;
+      coherentGate?: boolean;
+    };
+  };
+  regime?: {
+    regime: SemanticRegimeLabel;
+    confidence: number;
+    diagnostics: string[];
+  };
+  semanticConflict?: {
+    localRegime: SemanticRegimeLabel;
+    serverRegime: SemanticRegimeLabel;
+  };
+  governance?: {
+    driftRate: number;
+    gamma: number;
+    driftBound: number;
+    boundExceeded: boolean;
+    boundExceededLatched?: boolean;
+    pointOfNoReturn?: boolean;
+    pointOfNoReturnLatched?: boolean;
+    rollingGammaMax?: number;
+    rollingDriftStdDev?: number;
+    dimensionEstimate?: number | null;
+    dimensionBand?: DimensionBand;
+    dimensionDiagnostics?: {
+      available: boolean;
+      samples: number;
+      minSamples: number;
+      windowSamples: number;
+      reason?: string;
+      method?: "correlation" | "pca-fallback";
+    };
+    linchpin?: {
+      best: LinchpinScore | null;
+      top: LinchpinScore[];
+      transitionRate: number;
+      transitionCount: number;
+      sampleCount: number;
+      notes: string[];
+    };
+    posterior: Partial<Record<SemanticRegimeLabel, number>>;
+    bayesConfidence: number;
+    bayesEntropy: number;
+    bayesRegime: SemanticRegimeLabel;
+  };
+  governanceTrend?: Array<{
+    ts: number;
+    gamma: number;
+    driftRate: number;
+    jValue?: number;
+    deltaHealth?: number;
+    deltaLambdaMin?: number;
+    deltaViolationRate?: number;
+    deltaFlowMean?: number;
+    deltaAttractorSim?: number;
+    deltaDimension?: number;
+    boundExceeded: boolean;
+    pointOfNoReturn?: boolean;
+    dimensionEstimate?: number | null;
+    dimensionBand?: DimensionBand;
+    flowAlignment?: number | null;
+    lambdaMin?: number;
+    attractorSimilarity?: number;
+    bayesConfidence: number;
+    bayesEntropy: number;
+    bayesRegime: SemanticRegimeLabel;
+    deterministicRegime?: SemanticRegimeLabel;
+  }>;
+}
+
 // API types for field health and geometry state, designed to be implementation-agnostic and reusable across different modules.
 export interface FieldHealth {
   stable: boolean;
