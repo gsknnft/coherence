@@ -70,6 +70,16 @@
       "import": "./dist/invariants-lite.js",
       "default": "./dist/invariants-lite.js"
     },
+    "./math": {
+      "types": "./dist/math/index.d.ts",
+      "import": "./dist/math/index.js",
+      "default": "./dist/math/index.js"
+    },
+    "./math/*": {
+      "types": "./dist/math/*.d.ts",
+      "import": "./dist/math/*.js",
+      "default": "./dist/math/*.js"
+    },
     "./ncf": {
       "types": "./dist/ncf.d.ts",
       "import": "./dist/ncf.js",
@@ -173,6 +183,6 @@
     "@vitest/coverage-v8": "4.0.18",
     "@types/node": "^24.10.1",
     "ts-node": "^10.9.2",
-    "typescript": "^5.9.3"
+    "typescript": "^6.0.3"
   }
 }

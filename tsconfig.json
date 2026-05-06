@@ -1,19 +1,36 @@
 {
-    "compilerOptions": {
-        "target": "ESNext",
-        "moduleResolution": "bundler",
-        "lib": ["ESNext"],
-        "module": "ESNext",
-        "rootDir": "./src",
-        "noEmit": true,
-        "strict": true,
-        "esModuleInterop": true,
-        "skipLibCheck": true,
-        "forceConsistentCasingInFileNames": true
-    },
-    "watchOptions": {
-        "excludeDirectories": ["node_modules", "dist"]
-    },
-    "include": ["src", "src/attractors"],
-    "exclude": ["node_modules", "dist", "tests", "test", "coverage"]
+  "compilerOptions": {
+    "target": "ESNext",
+    "moduleResolution": "bundler",
+    "lib": [
+      "ESNext"
+    ],
+    "module": "ESNext",
+    "rootDir": "./src",
+    "noEmit": true,
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "types": [
+      "node"
+    ]
+  },
+  "watchOptions": {
+    "excludeDirectories": [
+      "node_modules",
+      "dist"
+    ]
+  },
+  "include": [
+    "src",
+    "src/attractors"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "tests",
+    "test",
+    "coverage"
+  ]
 }

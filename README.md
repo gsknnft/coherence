@@ -24,6 +24,7 @@ Current exported surfaces include:
 - regime helpers via `@gsknnft/coherence/regime/*`
 - dynamics helpers via `@gsknnft/coherence/dynamics/*`
 - geometric fitting via `@gsknnft/coherence/superformula`
+- reusable 3D math primitives via `@gsknnft/coherence/math`
 - resonance / system-energy / geometric-instability primitives
 - experimental latent-regime ingress via `@gsknnft/coherence/experimental/latent-regime`
 - experimental Orch-OR projection via `@gsknnft/coherence/experimental/orch-or`
@@ -65,6 +66,8 @@ Public release should treat the following as the supported contract:
 - `@gsknnft/coherence/fitj`
 - `@gsknnft/coherence/invariants`
 - `@gsknnft/coherence/invariants-lite`
+- `@gsknnft/coherence/math`
+- `@gsknnft/coherence/math/*`
 - `@gsknnft/coherence/ncf`
 - `@gsknnft/coherence/attractors`
 - `@gsknnft/coherence/attractors/*`
