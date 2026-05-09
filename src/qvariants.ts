@@ -1,6 +1,6 @@
-import { createRequire } from "node:module";
-
 // Keep qvariants build-local: avoid cross-package source imports.
+// Node.js-only functionality (@sigilnet/qfield is CJS/Node-only).
+// Browser consumers receive graceful no-ops — no crash.
 export type SignalVector = unknown;
 export type QuantumFieldState = unknown;
 
@@ -18,33 +18,31 @@ type QuantumSignalSuiteCtor = {
   evaluateSignalVector(signal: any): QuantumFieldState;
 };
 
-const require = createRequire(import.meta.url);
+let _qfieldCtor: QuantumSignalSuiteCtor | null = null;
+let _qfieldAttempted = false;
 
-let quantumSignalSuiteCtor: QuantumSignalSuiteCtor | null = null;
-
-function getQuantumSignalSuite(): QuantumSignalSuiteCtor {
-  if (quantumSignalSuiteCtor) {
-    return quantumSignalSuiteCtor;
+async function getQuantumSignalSuite(): Promise<QuantumSignalSuiteCtor> {
+  if (_qfieldCtor) return _qfieldCtor;
+  if (_qfieldAttempted) throw new Error("@sigilnet/qfield unavailable in this environment");
+  _qfieldAttempted = true;
+  let mod: { QuantumSignalSuite?: QuantumSignalSuiteCtor; default?: { QuantumSignalSuite?: QuantumSignalSuiteCtor } };
+  try {
+    mod = await import("@sigilnet/qfield") as typeof mod;
+  } catch {
+    throw new Error("@sigilnet/qfield is not available in this environment (browser or not installed)");
   }
-
-  const mod = require("@sigilnet/qfield") as {
-    QuantumSignalSuite?: QuantumSignalSuiteCtor;
-    default?: { QuantumSignalSuite?: QuantumSignalSuiteCtor };
-  };
   const ctor = mod.QuantumSignalSuite ?? mod.default?.QuantumSignalSuite;
   if (!ctor) {
-    throw new Error(
-      "@sigilnet/qfield did not expose QuantumSignalSuite through its require export",
-    );
+    throw new Error("@sigilnet/qfield did not expose QuantumSignalSuite");
   }
-  quantumSignalSuiteCtor = ctor;
+  _qfieldCtor = ctor;
   return ctor;
 }
 
 export async function processAndLogSignal(
   signal: number[],
 ): Promise<SignalVector> {
-  const QuantumSignalSuite = getQuantumSignalSuite();
+  const QuantumSignalSuite = await getQuantumSignalSuite();
   const qss = new QuantumSignalSuite();
   const { signalAnalysis: vec } = await qss.processAndLog(signal);
   return vec;
@@ -57,7 +55,7 @@ export async function sigAnalysis(signal: number[]): Promise<{
   hilbertData: any;
   entropy: number;
 }> {
-  const QuantumSignalSuite = getQuantumSignalSuite();
+  const QuantumSignalSuite = await getQuantumSignalSuite();
   const canonicalSignal = Float64Array.from(signal);
   const { imfs, hilbertData, entropy } =
     QuantumSignalSuite.runFullFieldAnalysis(canonicalSignal);

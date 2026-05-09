@@ -1,4 +1,3 @@
-import { createRequire } from "node:module";
 import {
   dwt,
   WaveletFamily,
@@ -84,66 +83,37 @@ export function generateAizawaAttractor(
 // }
 
 
-export function radialProfileFFT(histogram: number[], harmonics: number) {
-  // ... DFT implementation
+export async function radialProfileFFT(histogram: number[], harmonics: number) {
   const fft = new FFT(histogram);
   const spectrum = fft.createComplexArray();
-
   fft.realTransform(spectrum, histogram);
 
-  const mags = [];
-  const require = createRequire(import.meta.url);
-  const qfield = require("@sigilnet/qfield") as {
+  // @sigilnet/qfield is Node.js-only (CJS). Degrade gracefully in browser.
+  type QFieldMod = {
     QuantumSignalSuite?: {
-      new (src?: string): {
-        processAndLog(signal: number[]): Promise<any>;
-        buildEffsVector?: (...args: any[]) => any;
-        evaluateFieldState?: (...args: any[]) => any;
-      };
-      spectralEntropy?: (...args: any[]) => any;
-      runFullFieldAnalysis: (signal: Float64Array) => {
-        entropy: number;
-        hilbertData: any;
-        imfs: any;
-      };
+      new (src?: string): { processAndLog(signal: number[]): Promise<any> };
+      runFullFieldAnalysis: (signal: Float64Array) => { entropy: number; hilbertData: any; imfs: any };
     };
     default?: {
       QuantumSignalSuite?: {
-        new (src?: string): {
-          processAndLog(signal: number[]): Promise<any>;
-          buildEffsVector?: (...args: any[]) => any;
-          evaluateFieldState?: (...args: any[]) => any;
-        };
-        spectralEntropy?: (...args: any[]) => any;
-        runFullFieldAnalysis: (signal: Float64Array) => {
-          entropy: number;
-          hilbertData: any;
-          imfs: any;
-        };
+        new (src?: string): { processAndLog(signal: number[]): Promise<any> };
+        runFullFieldAnalysis: (signal: Float64Array) => { entropy: number; hilbertData: any; imfs: any };
       };
     };
   };
-  const QuantumSignalSuite =
-    qfield.QuantumSignalSuite ?? qfield.default?.QuantumSignalSuite;
-  if (!QuantumSignalSuite) {
-    throw new Error(
-      "@sigilnet/qfield did not expose QuantumSignalSuite through its require export",
-    );
+  let qfield: QFieldMod | null = null;
+  try {
+    qfield = await import("@sigilnet/qfield") as QFieldMod;
+  } catch {
+    // browser or qfield not installed — return spectrum only
+    return { spectrum, entropy: null, hilbertData: null, imfs: null };
   }
-  const quantumSignalSuite = new QuantumSignalSuite('coherence-analysis');
-  const { spectralEntropy, runFullFieldAnalysis } = QuantumSignalSuite;
-  const { processAndLog, buildEffsVector, evaluateFieldState,  } = quantumSignalSuite;
-  const {entropy, hilbertData, imfs } = runFullFieldAnalysis(Float64Array.from(histogram));
-  // const log = processAndLog({ spectralEntropy: entropy, hilbertData, imfs });
-  // const dft = wt.dft(histogram);
-  // for (let k = 1; k <= K; k += 1) {
-  //   for (let n = 0; n < N; n += 1) {
-  //     const a = (2 * Math.PI * k * n) / N;
-  //     re += histogram[n] * Math.cos(a);
-  //     im -= histogram[n] * Math.sin(a);
-  //   }
-  //   mags.push(Math.sqrt(re * re + im * im));
-  // }
+
+  const QuantumSignalSuite = qfield.QuantumSignalSuite ?? qfield.default?.QuantumSignalSuite;
+  if (!QuantumSignalSuite) {
+    throw new Error("@sigilnet/qfield did not expose QuantumSignalSuite");
+  }
+  const { entropy, hilbertData, imfs } = QuantumSignalSuite.runFullFieldAnalysis(Float64Array.from(histogram));
   return { spectrum, entropy, hilbertData, imfs };
 }
 // // Visualize current system regime as superellipse
