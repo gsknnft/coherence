@@ -95,6 +95,21 @@
       "import": "./dist/superformula.js",
       "default": "./dist/superformula.js"
     },
+    "./spherical-harmonics": {
+      "types": "./dist/sphericalHarmonics.d.ts",
+      "import": "./dist/sphericalHarmonics.js",
+      "default": "./dist/sphericalHarmonics.js"
+    },
+    "./schrodinger": {
+      "types": "./dist/schrodinger.d.ts",
+      "import": "./dist/schrodinger.js",
+      "default": "./dist/schrodinger.js"
+    },
+    "./reaction-diffusion": {
+      "types": "./dist/reactionDiffusion.d.ts",
+      "import": "./dist/reactionDiffusion.js",
+      "default": "./dist/reactionDiffusion.js"
+    },
     "./types": {
       "types": "./dist/types.d.ts",
       "import": "./dist/types.js",

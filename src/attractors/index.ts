@@ -1,5 +1,13 @@
 // @gsknnft/coherence/src/attractors/index.ts
 export * from "./aizawa.js";
+export * from "./burkeShaw.js";
+export { computeBurkeShaw, BURKE_SHAW_DEFAULT_PARAMS, BURKE_SHAW_PRESETS } from "./burkeShaw.js";
+export * from "./halvorsen.js";
+export { computeHalvorsen, HALVORSEN_DEFAULT_PARAMS, HALVORSEN_PRESETS } from "./halvorsen.js";
+export * from "./sprott.js";
+export { computeSprott } from "./sprott.js";
+export * from "./thomas.js";
+export { computeThomas, THOMAS_DEFAULT_PARAMS, THOMAS_PRESETS } from "./thomas.js";
 export {
   AIZAWA_DEFAULT_PARAMS as AIZAWA_PARAMS,
   computeAizawa,
@@ -29,24 +37,28 @@ export {
 } from "./rossler.js";
 
 import { computeAizawa } from "./aizawa.js";
+import { computeBurkeShaw } from "./burkeShaw.js";
 import { computeDuffing } from "./duffing.js";
+import { computeHalvorsen } from "./halvorsen.js";
 import { computeHenon } from "./henon.js";
 import { computeLorenz } from "./lorenz.js";
 import { computeRossler } from "./rossler.js";
+import { computeSprott, type SprottVariant } from "./sprott.js";
+import { computeThomas } from "./thomas.js";
 
 export type AttractorType =
   | "aizawa"
+  | "burke-shaw"
+  | "duffing"
+  | "halvorsen"
+  | "henon"
   | "lorenz"
   | "rossler"
-  | "henon"
-  | "duffing";
+  | "sprott"
+  | "thomas";
 
 export const ALL_ATTRACTORS: AttractorType[] = [
-  "aizawa",
-  "lorenz",
-  "rossler",
-  "henon",
-  "duffing",
+  "aizawa", "burke-shaw", "duffing", "halvorsen", "henon", "lorenz", "rossler", "sprott", "thomas",
 ];
 
 export interface AttractorConfig {
@@ -65,6 +77,30 @@ export interface AttractorMetadata {
 }
 
 export const ATTRACTOR_METADATA: Record<AttractorType, AttractorMetadata> = {
+  "burke-shaw": {
+    name: "Burke-Shaw",
+    dimension: "3D",
+    type: "continuous",
+    description: "Folded double-scroll — compact aggressive topology",
+  },
+  halvorsen: {
+    name: "Halvorsen",
+    dimension: "3D",
+    type: "continuous",
+    description: "Cyclic pinwheel spiral — smooth multi-lobed structure",
+  },
+  sprott: {
+    name: "Sprott",
+    dimension: "3D",
+    type: "continuous",
+    description: "Minimal one-nonlinearity family (variants A–L)",
+  },
+  thomas: {
+    name: "Thomas",
+    dimension: "3D",
+    type: "continuous",
+    description: "Dissipative trigonometric coupling — labyrinthine at low b",
+  },
   aizawa: {
     name: "Aizawa",
     dimension: "3D",
@@ -107,19 +143,19 @@ export function computeAttractor(config: {
   steps?: number;
   iterations?: number;
   dt?: number;
+  /** For Sprott family: which variant A-L to use */
+  sprottVariant?: SprottVariant;
 }): Float64Array {
   switch (config.type) {
-    case "aizawa":
-      return computeAizawa(config);
-    case "lorenz":
-      return computeLorenz(config);
-    case "rossler":
-      return computeRossler(config);
-    case "henon":
-      return computeHenon({ ...config, iterations: config.steps });
-    case "duffing":
-      return computeDuffing(config);
-    default:
-      throw new Error(`Unknown attractor: ${config.type}`);
+    case "aizawa":      return computeAizawa(config);
+    case "burke-shaw":  return computeBurkeShaw(config);
+    case "duffing":     return computeDuffing(config);
+    case "halvorsen":   return computeHalvorsen(config);
+    case "henon":       return computeHenon({ ...config, iterations: config.steps });
+    case "lorenz":      return computeLorenz(config);
+    case "rossler":     return computeRossler(config);
+    case "sprott":      return computeSprott({ variant: config.sprottVariant ?? "B", ...config });
+    case "thomas":      return computeThomas(config);
+    default:            throw new Error(`Unknown attractor: ${config.type}`);
   }
 }

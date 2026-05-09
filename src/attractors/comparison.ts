@@ -144,7 +144,8 @@ export function compareToAttractors(
     flowAlignmentMode: FlowAlignmentMode;
   };
 } {
-  const sig = buildSignatureForComparison(systemBehavior, projection);
+  const sig    = buildSignatureForComparison(systemBehavior, projection);
+  const sigAlt = buildSignatureForComparison(systemBehavior, projection === "xy" ? "xz" : "xy");
   const flowAlignment = options.gradient
     ? computeFlowAlignment(systemBehavior, options.gradient, {
         sampleStride: options.flowSampleStride,
@@ -152,19 +153,23 @@ export function compareToAttractors(
       })
     : null;
 
-  // Compute similarity to each known attractor
+  // Average similarity over two projections for more robust discrimination
+  const altProjection = projection === "xy" ? "xz" : "xy";
+  function avgSim(type: AttractorType): number {
+    const s1 = computeSimilarity(sig,    getReferenceSignature(type, projection));
+    const s2 = computeSimilarity(sigAlt, getReferenceSignature(type, altProjection));
+    return (s1 + s2) / 2;
+  }
   const scores: Record<AttractorType, number> = {
-    aizawa: computeSimilarity(sig, getReferenceSignature("aizawa", projection)),
-    lorenz: computeSimilarity(sig, getReferenceSignature("lorenz", projection)),
-    rossler: computeSimilarity(
-      sig,
-      getReferenceSignature("rossler", projection),
-    ),
-    henon: computeSimilarity(sig, getReferenceSignature("henon", projection)),
-    duffing: computeSimilarity(
-      sig,
-      getReferenceSignature("duffing", projection),
-    ),
+    aizawa:       avgSim("aizawa"),
+    "burke-shaw": avgSim("burke-shaw"),
+    duffing:      avgSim("duffing"),
+    halvorsen:    avgSim("halvorsen"),
+    henon:        avgSim("henon"),
+    lorenz:       avgSim("lorenz"),
+    rossler:      avgSim("rossler"),
+    sprott:       avgSim("sprott"),
+    thomas:       avgSim("thomas"),
   };
 
   const bestMatch = Object.entries(scores).sort(([, a], [, b]) => b - a)[0] as [
