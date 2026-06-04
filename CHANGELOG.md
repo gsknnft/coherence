@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.4.0 - 2026-06-02
+
+### Fixed — the package could not be imported when installed standalone
+
+- **Removed two undeclared external dependencies that broke every install.** The barrel
+  transitively pulled `@sigilnet/qtransform` (private, unpublished) via `tools.ts`, and
+  `@tensorflow/tfjs` via `invariants.ts` / `coherenceStep.ts` — neither was declared in
+  `dependencies`, so `import "@gsknnft/coherence"` threw `ERR_MODULE_NOT_FOUND` outside the
+  monorepo.
+  - `tools.ts` (FFT feature extraction / attractor generation) is **excluded from the
+    published build** and no longer re-exported. It stays in-repo for internal use; its
+    private signal-processing dependency is never shipped.
+  - The trivial 1-D tensor ops in `invariants.ts` (cosine similarity, euclidean distance,
+    signal power, noise characterization) and `coherenceStep.ts` (mean/std) were replaced
+    with plain deterministic JS. No behavioral change; removes the ~1 MB TF.js runtime.
+- The published package now has **zero external runtime dependencies** and imports cleanly
+  anywhere. Core API (`createCoherenceVector`, `coherenceDistance`, invariants, telemetry,
+  loop, sim, nbo, resolution, governance) is unchanged and verified.
+
 ## Unreleased (next: 0.2.1)
 
 - Attractor library refactored to use `@gsknnft/coherence` scope; Aizawa,

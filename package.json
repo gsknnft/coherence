@@ -1,6 +1,6 @@
 {
   "name": "@gsknnft/coherence",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "private": false,
   "description": "Canonical coherence math, regime analysis, and structural persistence primitives for Sigilnet.",
   "packageManager": "pnpm@10.24.0",
@@ -191,7 +191,8 @@
     "tsc:noemit": "tsc -b --noEmit",
     "test": "vitest run --reporter tree",
     "clean": "node -e \"require('node:fs').rmSync('dist',{recursive:true,force:true})\"",
-    "dev": "tsc -p tsconfig.json --watch --preserveWatchOutput"
+    "dev": "tsc -p tsconfig.json --watch --preserveWatchOutput",
+    "prepublishOnly": "pnpm test && pnpm run build && npm pack --dry-run"
   },
   "devDependencies": {
     "vitest": "4.0.18",

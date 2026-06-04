@@ -3,9 +3,23 @@ import { sigAnalysis } from './qvariants.js';
 
 import { CommitmentDetector } from './commitment-detector.js';
 import type { CoherencePrimitives, CouplingParams } from './types.js';
-import * as tf from '@tensorflow/tfjs';
 
 const detector = new CommitmentDetector();
+
+/** Arithmetic mean and population standard deviation of a numeric array. */
+function meanStd(signal: number[]): { mean: number; std: number } {
+  const n = signal.length;
+  if (!n) return { mean: 0, std: 0 };
+  let sum = 0;
+  for (let i = 0; i < n; i++) sum += signal[i];
+  const mean = sum / n;
+  let varAcc = 0;
+  for (let i = 0; i < n; i++) {
+    const d = signal[i] - mean;
+    varAcc += d * d;
+  }
+  return { mean, std: Math.sqrt(varAcc / n) };
+}
 
 const totalPower = (signal: number[]): number =>
   signal.reduce((sum, val) => sum + val * val, 0) / signal.length;
@@ -24,15 +38,7 @@ async function coherenceStep(signal: number[], intent: number[], { loop, params 
   const resonance = 1 - entropy;
 
   // Step 4. Add a few descriptive stats
-  const { mean, std } = tf.tidy(() => {
-    const t = tf.tensor1d(signal);
-    const meanTensor = t.mean();
-    const stdTensor = t.sub(meanTensor).square().mean().sqrt();
-    return {
-      mean: meanTensor.dataSync()[0],
-      std: stdTensor.dataSync()[0],
-    };
-  });
+  const { mean, std } = meanStd(signal);
 
   // Step 5. Detect commitment event
   detector.detectCommitment(M, V, {

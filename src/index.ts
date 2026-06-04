@@ -3,7 +3,9 @@ export * from "./coherence.js";
 export * from "./coherenceStep.js";
 export * from "./commitment-detector.js";
 export * from "./coherence-geometry.js";
-export * from './tools.js';
+// NOTE: ./tools.js is intentionally NOT re-exported and is excluded from the published
+// build. It depends on a private internal signal-processing package (FFT feature
+// extraction / attractor generation). Kept in-repo for internal use only.
 export * from "./geometric-regime.js";
 export * from "./presets.js";
 export * from "./fitj.js";
