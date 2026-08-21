@@ -123,6 +123,10 @@ describe("Tsallis entropy", () => {
     expect(tsallis(uniform4)).toBeGreaterThan(tsallis(peaked));
     expect(val(renyiEntropy(uniform4, q))).toBeGreaterThan(val(renyiEntropy(peaked, q)));
   });
+
+  it("rejects negative orders instead of hiding divergence at zero-mass outcomes", () => {
+    expect(tsallisEntropy([0.5, 0.5, 0], -1).kind).toBe("unavailable");
+  });
 });
 
 describe("Renyi divergence", () => {

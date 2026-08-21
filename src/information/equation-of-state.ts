@@ -36,10 +36,13 @@
  *
  *   C = beta^2 * Var(E)
  *
- * Heat capacity is proportional to the variance of the energy. In statistical
- * mechanics, C peaks at phase transitions — that is the standard signature of one.
- * Applied to a regime's own distribution it gives a transition indicator computed
- * from a single window, with no baseline and no sequence required.
+ * Heat capacity is proportional to the variance of the energy. In a thermodynamic
+ * limit, singular or scaling response can help identify a phase transition. A
+ * finite distribution can also have a perfectly ordinary smooth response peak
+ * (the two-level Schottky anomaly is the simplest example), so a peak here is NOT
+ * evidence of a phase transition. Applied to a regime's own distribution it gives
+ * a response/crossover indicator computed from one window, with no baseline or
+ * sequence required.
  *
  * That complements `regimeDisplacement`, which needs a reference, and the
  * trajectory machinery, which needs a chronology. This needs neither. It answers
@@ -71,7 +74,8 @@ export interface GibbsState {
   /** Variance of the energy under the fitted distribution. */
   energyVariance: number;
   /**
-   * Heat capacity, beta^2 * Var(E). Peaks near a transition.
+   * Heat capacity, beta^2 * Var(E). A finite-system response measure; a peak
+   * alone is not evidence of a phase transition.
    *
    * Dimensionless here, since the energies are whatever the caller supplied.
    */
@@ -242,7 +246,8 @@ export interface EquationOfStateCheck {
    * |residual| / |entropyChange|, or null when the entropy did not change.
    *
    * The relation is exact only in the differential limit. Over a finite step beta
-   * itself moves, so this is second-order in the step size and shrinking it is the
+   * itself moves. With midpoint beta the absolute residual is third-order in a
+   * smooth step and this relative residual is second-order; shrinking it is the
    * check that the implementation is right rather than coincidentally close.
    */
   relativeResidual: number | null;
@@ -253,9 +258,9 @@ export interface EquationOfStateCheck {
  *
  * The relation is a differential identity, so over a finite step it holds only
  * approximately, with beta evaluated at the midpoint. The residual is reported
- * rather than hidden: it is second-order in the step, and watching it fall as the
- * step shrinks is how one confirms the identity is being computed and not merely
- * asserted.
+ * rather than hidden. The midpoint-rule absolute residual is third-order for a
+ * smooth step (the relative residual is second-order), and watching it fall as
+ * the step shrinks confirms the identity is computed rather than asserted.
  */
 export function checkEquationOfState(before: GibbsState, after: GibbsState): EquationOfStateCheck {
   const entropyChange = after.entropy - before.entropy;
@@ -316,15 +321,14 @@ export interface TransitionIndicator {
 /**
  * Sweep beta and report where heat capacity peaks.
  *
- * In statistical mechanics a peak in C = beta^2 Var(E) marks a phase transition:
- * the point where the system's energy is maximally responsive to a change in
- * temperature. Applied to a distribution over any energy-like observable, the
- * location of the peak says at which effective temperature the distribution is
- * most poised between its low- and high-energy configurations.
+ * C = beta^2 Var(E) measures how responsive mean energy is to temperature. In a
+ * thermodynamic limit, singular/scaling behaviour can support a phase-transition
+ * claim. This finite sweep cannot establish that: even a two-level system has a
+ * smooth Schottky peak. The location therefore says only where this chosen finite
+ * model is maximally responsive between low- and high-energy configurations.
  *
- * Useful as a transition indicator that needs neither a baseline nor a chronology.
- * It says nothing about whether a transition will occur — only that the
- * distribution's structure is, at that beta, maximally sensitive.
+ * Useful as a response/crossover indicator that needs neither a baseline nor a
+ * chronology. It says nothing about whether a transition will occur.
  */
 export function heatCapacitySweep(
   energies: readonly number[],
@@ -335,6 +339,12 @@ export function heatCapacitySweep(
   }
   if (betas.length === 0) {
     return { kind: "unavailable", reason: "no beta values supplied to sweep" };
+  }
+  if (energies.some((energy) => !Number.isFinite(energy))) {
+    return { kind: "unavailable", reason: "energies must all be finite" };
+  }
+  if (betas.some((beta) => !Number.isFinite(beta))) {
+    return { kind: "unavailable", reason: "beta values must all be finite" };
   }
 
   const raw = betas.map((beta) => {

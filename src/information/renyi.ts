@@ -186,6 +186,12 @@ export function tsallisEntropy(values: readonly number[], q: number): EntropyRes
   if (!Number.isFinite(q)) {
     return { kind: "unavailable", reason: `q must be a finite number, got ${q}` };
   }
+  if (q < 0) {
+    return {
+      kind: "unavailable",
+      reason: `q must be non-negative, got ${q}; negative orders diverge when the distribution has zero-probability outcomes`,
+    };
+  }
   const p = toDistribution(values);
   if (!p) {
     return {

@@ -90,10 +90,11 @@ describe("Gibbs fit", () => {
 });
 
 describe("the equation of state, dS = beta d<E>", () => {
-  it("holds, with a residual that shrinks quadratically as the step shrinks", () => {
+  it("holds, with midpoint-rule absolute residual shrinking cubically", () => {
     // The relation is a differential identity. Over a finite step beta itself
-    // moves, so the residual is second order — and watching it fall as the step
-    // halves is what distinguishes a computed identity from an asserted one.
+    // moves, so midpoint quadrature leaves a third-order absolute residual (and
+    // a second-order relative residual). Watching it fall distinguishes a
+    // computed identity from an asserted one.
     const residualFor = (step: number): number => {
       const before = state(LEVELS, 0.8);
       const after = state(LEVELS, 0.8 + step);
@@ -107,9 +108,9 @@ describe("the equation of state, dS = beta d<E>", () => {
 
     expect(medium).toBeLessThan(coarse);
     expect(fine).toBeLessThan(medium);
-    // Halving the step should cut the residual by roughly four, not two.
-    expect(coarse / medium).toBeGreaterThan(3);
-    expect(medium / fine).toBeGreaterThan(3);
+    // Halving the step should cut the absolute residual by roughly eight.
+    expect(coarse / medium).toBeGreaterThan(6);
+    expect(medium / fine).toBeGreaterThan(6);
   });
 
   it("is essentially exact in the small-step limit", () => {
@@ -161,7 +162,7 @@ describe("fit quality is a separate question from fit success", () => {
   });
 });
 
-describe("heat capacity as a transition indicator", () => {
+describe("heat capacity as a finite-system response indicator", () => {
   it("peaks at a finite beta and vanishes at both extremes", () => {
     // C = beta^2 Var(E) is zero at beta = 0 (no beta^2) and zero at large |beta|
     // (the distribution is a point mass, so no variance). The peak between them
@@ -194,5 +195,7 @@ describe("heat capacity as a transition indicator", () => {
   it("declines a degenerate sweep", () => {
     expect(heatCapacitySweep([1], [0, 1]).kind).toBe("unavailable");
     expect(heatCapacitySweep(LEVELS, []).kind).toBe("unavailable");
+    expect(heatCapacitySweep([0, Number.NaN], [0, 1]).kind).toBe("unavailable");
+    expect(heatCapacitySweep(LEVELS, [0, Number.POSITIVE_INFINITY]).kind).toBe("unavailable");
   });
 });
