@@ -194,6 +194,10 @@
     "dev": "tsc -p tsconfig.json --watch --preserveWatchOutput",
     "prepublishOnly": "pnpm test && pnpm run build && npm pack --dry-run"
   },
+  "dependencies": {
+    "@noble/hashes": "^2.2.0",
+    "@gsknnft/fft-ts": "1.2.0"
+  },
   "devDependencies": {
     "vitest": "4.0.18",
     "@vitest/coverage-v8": "4.0.18",

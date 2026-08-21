@@ -30,7 +30,23 @@ export const COHERENCE_VECTOR_SCALAR_KEYS: readonly CoherenceVectorScalarKey[] =
 
 export const COHERENCE_VECTOR_DECIMALS = 8;
 export const COHERENCE_VECTOR_VERSION = 1;
+
+/**
+ * Prefix for the short FNV-1a-32 fingerprint carried on every CoherenceVector.
+ *
+ * A distinct prefix from {@link COHERENCE_VECTOR_DIGEST_PREFIX} so the two
+ * layers can never be confused for one another in a log, a record, or a
+ * comparison.
+ */
 export const COHERENCE_VECTOR_HASH_PREFIX = `cv${COHERENCE_VECTOR_VERSION}_`;
+
+/**
+ * Prefix for the full SHA-256 digest — the durable-identity layer.
+ *
+ * See `computeCoherenceVectorDigest` for why identity and fingerprint are
+ * separate concerns rather than one value doing both jobs.
+ */
+export const COHERENCE_VECTOR_DIGEST_PREFIX = `cvd${COHERENCE_VECTOR_VERSION}_`;
 
 export type CoherenceVectorScalars = Omit<CoherenceVector, "attractorSignatureHash">;
 
@@ -84,6 +100,90 @@ type LinchpinScore = {
   eventCount: number;
   direction: LinchpinDirection;
 };
+
+
+export interface PolarPoint {
+  angle: number;
+  radius: number;
+}
+
+export interface CartesianPoint {
+  x: number;
+  y: number;
+}
+
+export interface SuperformulaParams {
+  m: number;
+  n1: number;
+  n2: number;
+  n3: number;
+  a: number;
+  b: number;
+}
+
+export interface SuperformulaFitResult {
+  lossMode: LossMode;
+  losses: number[];
+  seedStability: {
+    fitErrorStdDev: number;
+    mStdDev: number;
+    n1StdDev: number;
+    n2StdDev: number;
+    n3StdDev: number;
+  };
+  seedResults: Array<{
+    params: SuperformulaParams;
+    fitError: number;
+  }>;
+  huberDelta?: number;
+}
+
+export interface GeometricSignature {
+  symmetry: number;
+  roughness: number;
+  anisotropy: number;
+  fitError: number;
+  fitErrorStability?: number;
+  sampleSize: number;
+  superformula?: SuperformulaFitResult;
+}
+
+export type LossMode = "mae" | "huber";
+
+export interface FitSuperformulaOptions {
+  seeds?: number;
+  iterations?: number;
+  randomSeed?: number;
+  lossMode?: LossMode;
+  huberDelta?: number;
+}
+
+export interface ExtractGeometricSignatureOptions {
+  includeSuperformulaFit?: boolean;
+  histogramBins?: number;
+  harmonics?: number;
+  fit?: FitSuperformulaOptions;
+}
+
+export interface GeometricCalibrationProfile {
+  minSampleSize: number;
+  stableFitStdDev: number;
+  trustedFitError: number;
+  weights: {
+    symmetry: number;
+    roughnessPenalty: number;
+    anisotropyPenalty: number;
+    fitErrorPenalty: number;
+  };
+}
+
+export interface CalibratedGeometricScore {
+  coherenceProxy: number;
+  entropyProxy: number;
+  advisoryWeight: number;
+  score: number;
+  diagnostics: string[];
+}
 
 export interface GeometryFrame extends GeometryState {
   dataSource?: "mock" | "ws" | "poll" | "transport";

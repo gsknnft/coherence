@@ -1,6 +1,5 @@
-import type { GeometricSignature } from "./superformula.js";
 import type { compareToAttractors } from "./attractors/comparison.js";
-import type { JSpaceResolution } from "./types.js";
+import type { JSpaceResolution, GeometricSignature } from "./types.js";
 
 export type MorphologyRegimeLabel =
   | "coherent"

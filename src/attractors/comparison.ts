@@ -1,9 +1,11 @@
 // @gsknnft/coherence/src/attractors/comparison.ts
 
 import {
-  extractGeometricSignature,
-  type GeometricSignature,
+  extractGeometricSignature
 } from "../superformula.js";
+import type {
+  GeometricSignature,
+} from "../types.js";
 import type { GeometryEvalGrad, Vector3 } from "../types.js";
 import {
   computeAttractor,

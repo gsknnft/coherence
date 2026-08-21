@@ -27,6 +27,7 @@ export * from "./contracts.js";
 export * from "./types.js";
 export * from "./geometry.js";
 export * from "./math/index.js";
+export * from "./information/index.js";
 export * from "./latency.js";
 export * from "./superformula.js";
 export * from "./governance/drift.js";

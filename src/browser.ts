@@ -24,7 +24,6 @@ export {
   type GeometricRegimeInputs,
   type AttractorComparisonResult,
 } from "./geometric-regime.js";
-export type { GeometricSignature } from "./superformula.js";
 export {
   featuresFromFrame,
   driftRate,
@@ -82,6 +81,7 @@ export {
   type DimensionBandOptions,
 } from "./dynamics/dimension.js";
 export type {
+  GeometricSignature,
   GeometryState,
   GeometryFrame,
   GeometryEvalGrad,

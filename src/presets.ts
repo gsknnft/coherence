@@ -1,6 +1,6 @@
 // @gsknnft/coherence/src/presets.ts
 
-import type { SuperformulaParams } from "./superformula.js";
+import type { SuperformulaParams } from "./types.js";
 
 export const SUPERFORMULA_PRESETS = {
   coherent: {

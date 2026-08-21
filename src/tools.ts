@@ -1,17 +1,15 @@
 import {
-  dwt,
-  WaveletFamily,
   FFT
-} from "@sigilnet/qtransform";
-import type { FeatureSet, FFTResult, Signal } from "@sigilnet/qtransform";
+} from "@gsknnft/fft-ts";
+// import type { FeatureSet, FFTResult, Signal } from "@sigilnet/qtransform";
 
-import { superformulaRadius, extractGeometricSignature } from './superformula.js';
-import type { SuperformulaParams, PolarPoint } from './superformula.js';
+// import { superformulaRadius, extractGeometricSignature } from './superformula.js';
+import type { PolarPoint } from './types.js';
 
-interface SystemState {
-  telemetry: number[];
-  holders: PolarPoint[];
-}
+// interface SystemState {
+//   telemetry: number[];
+//   holders: PolarPoint[];
+// }
 
 export function generateRandomPoints(
   count: number,
@@ -84,7 +82,7 @@ export function generateAizawaAttractor(
 
 
 export async function radialProfileFFT(histogram: number[], harmonics: number) {
-  const fft = new FFT(histogram);
+  const fft = new FFT(histogram.length);
   const spectrum = fft.createComplexArray();
   fft.realTransform(spectrum, histogram);
 

@@ -21,13 +21,17 @@ type QuantumSignalSuiteCtor = {
 let _qfieldCtor: QuantumSignalSuiteCtor | null = null;
 let _qfieldAttempted = false;
 
+const importOptional = new Function("specifier", "return import(specifier)") as (
+  specifier: string,
+) => Promise<unknown>;
+
 async function getQuantumSignalSuite(): Promise<QuantumSignalSuiteCtor> {
   if (_qfieldCtor) return _qfieldCtor;
   if (_qfieldAttempted) throw new Error("@sigilnet/qfield unavailable in this environment");
   _qfieldAttempted = true;
   let mod: { QuantumSignalSuite?: QuantumSignalSuiteCtor; default?: { QuantumSignalSuite?: QuantumSignalSuiteCtor } };
   try {
-    mod = await import("@sigilnet/qfield") as typeof mod;
+    mod = (await importOptional("@sigilnet/qfield")) as typeof mod;
   } catch {
     throw new Error("@sigilnet/qfield is not available in this environment (browser or not installed)");
   }

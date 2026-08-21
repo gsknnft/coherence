@@ -1,6 +1,6 @@
 // @gsknnft/coherence/src/attractors/projection.ts
 
-import type { PolarPoint } from "../superformula.js";
+import type { PolarPoint } from "../types.js";
 
 /**
  * Project 3D Aizawa attractor onto 2D plane and convert to polar
